@@ -22,7 +22,7 @@
         <!-- End Heading -->
 
         <!-- nanti di sini diisi table nya -->
-        <%# include('table_bank.ejs') %>
+        <%- include('table_product.ejs') %>
 
       </div>
       <!-- /.container-fluid -->
@@ -63,8 +63,8 @@
   </div>
 </div>
 
-<%# include('add_modal.ejs') %>
-<%# include('edit_modal.ejs') %>
+<%- include('add_product.ejs') %>
+<%- include('edit_product.ejs') %>
 <%- include('../../partials/js.ejs') %>
 <script>
   $('#dataTable').on('click', '.button-update', function () {

@@ -1,5 +1,8 @@
-const users = require('../models/users');
 const bycrypt = require("bcryptjs");
+const fs = require('fs-extra');
+const path = require('path');
+const users = require('../models/users');
+const tbProduct = require('../models/products');
 
 module.exports = {
   viewSignIn: async (req, res) => {
@@ -42,12 +45,71 @@ module.exports = {
   },
 
   viewProduct: async (req, res) => {
-    // untuk alert message dia call component dari partials/message.ejs
-    const alertMessage = req.flash("alertMessage");
-    const alertStatus = req.flash("alertStatus");
-    const alert = { message: alertMessage, status: alertStatus };
-    res.render('admin/product/view_product', {
-      alert,
-    });
+    try {
+      const product = await tbProduct.find();
+      // untuk alert message dia call component dari partials/message.ejs
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+      res.render('admin/product/view_product', { product, alert,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/product");
+    }
   },
+
+  addProduct: async (req, res) => {
+    try {
+      const { nameProduct, merk, type , status, price , description , barcode  } = req.body;
+      await tbProduct.create({ nameProduct, merk, type , status,  image: `images/${req.file.filename}` , price , description , barcode  });
+      req.flash("alertMessage", "Succes Add Product");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/product");
+
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/product");
+
+    }
+  },
+  editProduct: async (req, res) => {
+   try {
+    const { nameProduct, merk, type , status, price , description , barcode  } = req.body;
+     const product = await tbProduct.findOne({_id : id});
+     if(req.file == undefined){
+       product.nameProduct = nameProduct;
+       product.merk = merk;
+       product.type = type;
+       product.status = status;
+       product.price = price;
+       product.description = description;
+       product.barcode = barcode;
+       await product.save();
+       req.flash("alertMessage", "Succes Update Product");
+       req.flash("alertStatus", "success");
+       res.redirect("/admin/product");
+     }else {
+       await fs.unlink(path.join(`public/${product.image}`));
+       product.nameProduct = nameProduct;
+       product.merk = merk;
+       product.type = type;
+       product.status = status;
+       product.image = `images/${req.file.filename}`
+       product.price = price;
+       product.description = description;
+       product.barcode = barcode;
+       await product.save();
+       req.flash("alertMessage", "Succes Update Product");
+       req.flash("alertStatus", "success");
+       res.redirect("/admin/product");
+     }
+   } catch (error) {
+    req.flash("alertMessage", `${error.message}`);
+    req.flash("alertStatus", 'danger');
+    res.redirect("/admin/product");
+   }
+  }
 }
