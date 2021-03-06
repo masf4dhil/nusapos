@@ -10,7 +10,8 @@ seeder.connect('mongodb://localhost:27017/nusa', {
 
   // Load Mongoose models
   seeder.loadModels([
-    './models/users'
+    './models/users',
+    './models/product'
   ]);
 
   // Clear specified collections
@@ -32,6 +33,22 @@ var data = [
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
         username: 'admin',
         password: 'rahasia',
+      },
+    ]
+  },
+  {
+    'model': 'product',
+    'documents': [
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903145'),
+        nameProduct: 'XD',
+        merk: 'cannon',
+        type: 'mirror less',
+        status: 'avaliable', 
+        image:'asdasd',
+        price: 12000,
+        description: 'barang ada',
+        barcode: 'adads'
       },
     ]
   }
