@@ -66,16 +66,25 @@
 <%- include('add_product.ejs') %>
 <%- include('edit_product.ejs') %>
 <%- include('../../partials/js.ejs') %>
+
 <script>
   $('#dataTable').on('click', '.button-update', function () {
-    // let id = $(this).data('id');
-    // let name = $(this).data('name');
-    // let nameBank = $(this).data('namebank');
-    // let nomorRekening = $(this).data('nomorrekening');
-    // $('#edit-modal').modal('show');
-    // $('.id').val(id);
-    // $('.name').val(name);
-    // $('.nameBank').val(nameBank);
-    // $('.nomorRekening').val(nomorRekening);
+    let id = $(this).data('id');
+    let name = $(this).data('name');
+    let merk = $(this).data('merk');
+    let type = $(this).data('type');
+    let status = $(this).data('status');
+    let price = $(this).data('price');
+    let description = $(this).data('description');
+    let barcode = $(this).data('barcode');
+    $('#edit-product').modal('show');
+    $('.id').val(id);
+    $('.name').val(name);
+    $('.merk').val(merk);
+    $('.type').val(type);
+    $('.status').val(status);
+    $('.price').val(price);
+    $('.description').val(description);
+    $('.barcode').val(barcode);
   })
 </script>

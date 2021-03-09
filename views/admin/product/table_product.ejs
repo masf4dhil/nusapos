@@ -27,20 +27,22 @@
           <% for(let i = 0; i < product.length; i++) { %>
           <tr>
             <td><%= i + 1 %></td>
-            <td><%= product[i].nameProduct %></td>
+            <td><%= product[i].name %></td>
             <td><%= product[i].merk %></td>
             <td><%= product[i].type %></td>
             <td><%= product[i].status %></td>
             <td><%= product[i].price %></td>
             <td><%= product[i].description %></td>
             <td><%= product[i].barcode %></td>
-            <!-- <td>
-              <img src="https://admin-book-hotel.herokuapp.com/<%# bank[i].image %> " alt="image" width="70px">
-            </td> -->
             <td>
-              <form action="/admin/product/<%= product[i].id%>?_method=DELETE" method="POST">
+              <img src="http://localhost:3000/<%- product[i].image %> " alt="image" width="70px">
+            </td>
+            <td>
+              <form action="/admin/product/<%= product[i].id %>?_method=DELETE" method="POST">
                 <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                  data-id="<%= product[i].id %>" data-name="<%= product[i].nameProduct %>">
+                data-id="<%= product[i].id %>" data-name="<%= product[i].name %>"  data-merk="<%= product[i].merk %>"  data-type="<%= product[i].type %>"
+                  data-status="<%= product[i].status %>"  data-price="<%= product[i].price %>" data-description="<%= product[i].description %>"
+                  data-barcode="<%= product[i].barcode %>" >
                   <i class="fas fa-edit"></i></a>
                 <button type="submit" class="btn btn-danger btn-circle btn-sm">
                   <i class="fas fa-trash"></i></button>

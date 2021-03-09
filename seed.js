@@ -41,33 +41,33 @@ var data = [
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903145'),
-        nameProduct: 'XD',
+        name: 'XD',
         merk: 'cannon',
         type: 'mirror less',
         status: 'avaliable', 
-        image:'asdasd',
+        image:'images/1.PNG',
         price: 12000,
         description: 'barang ada',
         barcode: 'adads'
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903445'),
-        nameProduct: 'fujitsu',
+        name: 'fujitsu',
         merk: 'nikon',
         type: 'mirror less',
         status: 'avaliable', 
-        image:'asdasd',
+        image:'images/2.PNG',
         price: 13000,
         description: 'barang ada',
         barcode: 'adads'
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445'),
-        nameProduct: 'dummy',
+        name: 'dummy',
         merk: 'japan',
         type: 'mirror less',
         status: 'non avalaible', 
-        image:'asdasd',
+        image:'images/3.PNG',
         price: 11000,
         description: 'barang ada',
         barcode: 'adads'

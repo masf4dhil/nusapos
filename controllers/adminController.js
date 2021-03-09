@@ -47,6 +47,7 @@ module.exports = {
   viewProduct: async (req, res) => {
     try {
       const product = await tbProduct.find();
+      console.log("product " + product);
       // untuk alert message dia call component dari partials/message.ejs
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -62,8 +63,8 @@ module.exports = {
 
   addProduct: async (req, res) => {
     try {
-      const { nameProduct, merk, type , status, price , description , barcode  } = req.body;
-      await tbProduct.create({ nameProduct, merk, type , status,  image: `images/${req.file.filename}` , price , description , barcode  });
+      const { name, merk, type , status, price , description , barcode  } = req.body;
+      await tbProduct.create({ name, merk, type , status,  image: `images/${req.file.filename}` , price , description , barcode  });
       req.flash("alertMessage", "Succes Add Product");
       req.flash("alertStatus", "success");
       res.redirect("/admin/product");
@@ -77,10 +78,10 @@ module.exports = {
   },
   editProduct: async (req, res) => {
    try {
-    const { nameProduct, merk, type , status, price , description , barcode  } = req.body;
-     const product = await tbProduct.findOne({_id : id});
+    const { id , name, merk, type , status, price , description , barcode  } = req.body;
+     const product = await tbProduct.findOne({ _id : id});
      if(req.file == undefined){
-       product.nameProduct = nameProduct;
+       product.name = name;
        product.merk = merk;
        product.type = type;
        product.status = status;
@@ -93,7 +94,7 @@ module.exports = {
        res.redirect("/admin/product");
      }else {
        await fs.unlink(path.join(`public/${product.image}`));
-       product.nameProduct = nameProduct;
+       product.name = name;
        product.merk = merk;
        product.type = type;
        product.status = status;
@@ -111,5 +112,22 @@ module.exports = {
     req.flash("alertStatus", 'danger');
     res.redirect("/admin/product");
    }
-  }
+  },
+  deleteBank: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const product = await tbProduct.findOne({ _id: id });
+      await fs.unlink(path.join(`public/${product.image}`));
+      await product.remove();
+      req.flash('alertMessage', 'Success Delete Product');
+      req.flash('alertStatus', 'success');
+      res.redirect('/admin/product');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/product');
+    }
+  },
+
+
 }
