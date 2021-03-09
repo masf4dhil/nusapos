@@ -6,7 +6,22 @@ const tbProduct = require('../models/products');
 
 module.exports = {
   viewSignIn: async (req, res) => {
-    res.render('index');
+    try {
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+      const alert = { message: alertMessage, status: alertStatus };
+      if (req.session.user == null || req.session.user == undefined) {
+        res.render('index', {
+          alert,
+          title: "Staycation | Login"
+        });
+      } else {
+        res.redirect('/admin/dashboard');
+      }
+    } catch (error) {
+      res.redirect('/admin/signin');
+    }
+    
   },
 
   actionSignin: async (req, res) => {
