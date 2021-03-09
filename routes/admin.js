@@ -12,5 +12,5 @@ router.get("/dashboard", adminController.viewDashboard);
 router.get("/product", adminController.viewProduct);
 router.post("/product", uploadSingle, adminController.addProduct);
 router.put("/product", uploadSingle, adminController.editProduct);
-router.delete('/product/:id', adminController.deleteBank);
+router.delete('/product/:id', adminController.deleteProduct);
 module.exports = router;

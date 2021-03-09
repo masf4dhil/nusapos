@@ -56,7 +56,16 @@ module.exports = {
   },
 
   viewDashboard: async (req, res) => {
-    res.render('admin/dashboard/view_dashboard');
+    try {
+      const product = await tbProduct.find();
+      res.render('admin/dashboard/view_dashboard', {
+        title: "Staycation | Dashboard",
+        user: req.session.user,
+        product,
+      });
+    } catch (error) {
+      res.redirect('/admin/dashboard');
+    }
   },
 
   viewProduct: async (req, res) => {
@@ -83,12 +92,10 @@ module.exports = {
       req.flash("alertMessage", "Succes Add Product");
       req.flash("alertStatus", "success");
       res.redirect("/admin/product");
-
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", 'danger');
       res.redirect("/admin/product");
-
     }
   },
   editProduct: async (req, res) => {
@@ -128,7 +135,7 @@ module.exports = {
     res.redirect("/admin/product");
    }
   },
-  deleteBank: async (req, res) => {
+  deleteProduct: async (req, res) => {
     try {
       const { id } = req.params;
       const product = await tbProduct.findOne({ _id: id });
@@ -141,6 +148,25 @@ module.exports = {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
       res.redirect('/admin/product');
+    }
+  },
+
+  searchBar: async (req, res) => {
+    const { barcode } = req.params
+    try {
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+      const alert = { message: alertMessage, status: alertStatus };
+      const product = await tbProduct.findOne({ barcode: barcode })
+      res.render('admin/dashboard/search', {
+        title: "Staycation | Seacrh",
+        user: req.session.user,
+        product,
+        alert
+      });
+    } catch (error) {
+      console.log("ini error nya " + error );
+      res.redirect('/admin/signin');
     }
   },
 
