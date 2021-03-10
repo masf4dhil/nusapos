@@ -77,7 +77,10 @@
 
                 
                 <div class="col-lg-6">
-                  <div class="row">
+                  <div class="col-sm-12 mb-3">
+                    <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()" placeholder="Search for names..">
+                  </div>
+                  <div class="row"  id="myItems">
                     <% for(let i = 0; i < product.length; i++){ %>
                     <div class="card" style="width: 12rem; margin-right: 1rem; margin-left: 1rem; margin-bottom: 1rem">
                       <img src="http://localhost:3000/images/1.webp" alt="image" class="card-img-top"
