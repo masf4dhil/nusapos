@@ -1,8 +1,8 @@
 const bycrypt = require("bcryptjs");
 const fs = require('fs-extra');
 const path = require('path');
-const users = require('../models/users');
-const tbProduct = require('../models/products');
+const users = require('../models/Users');
+const tbProduct = require('../models/Products');
 
 module.exports = {
   viewSignIn: async (req, res) => {
@@ -150,25 +150,9 @@ module.exports = {
       res.redirect('/admin/product');
     }
   },
+  
 
-  searchBar: async (req, res) => {
-    const { barcode } = req.params
-    try {
-      const alertMessage = req.flash('alertMessage');
-      const alertStatus = req.flash('alertStatus');
-      const alert = { message: alertMessage, status: alertStatus };
-      const product = await tbProduct.findOne({ barcode: barcode })
-      res.render('admin/dashboard/search', {
-        title: "Staycation | Seacrh",
-        user: req.session.user,
-        product,
-        alert
-      });
-    } catch (error) {
-      console.log("ini error nya " + error );
-      res.redirect('/admin/signin');
-    }
-  },
+
 
 
 }

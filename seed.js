@@ -10,12 +10,13 @@ seeder.connect('mongodb://localhost:27017/nusa', {
 
   // Load Mongoose models
   seeder.loadModels([
-    './models/users',
-    './models/products'
+    './models/Users',
+    './models/Products',
+    './models/Bookings'
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['users'], function () {
+  seeder.clearModels(['Users' , 'Products' , 'Bookings'], function () {
 
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
@@ -27,7 +28,7 @@ seeder.connect('mongodb://localhost:27017/nusa', {
 
 var data = [
   {
-    'model': 'users',
+    'model': 'Users',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
@@ -37,7 +38,7 @@ var data = [
     ]
   },
   {
-    'model': 'products',
+    'model': 'Products',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903145'),
@@ -73,6 +74,24 @@ var data = [
         barcode: 'adads'
       },
     ]
-  }
+  },
+  {
+    'model': 'Bookings',
+    'documents': [  
+      {
+        _id: mongoose.Types.ObjectId('4e96cbe292b97300fc903445'),
+        productId: {
+           _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445'),
+           name: 'dummy',
+           merk: 'japan',
+           type: 'mirror less',
+           status: 'non avalaible', 
+           price: 11000,
+           description: 'barang ada',
+           barcode: 'adads'
+          },
+      },
+    ]
+  },
 
 ]
