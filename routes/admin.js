@@ -7,7 +7,9 @@ router.get("/signin", adminController.viewSignIn);
 router.post("/signin", adminController.actionSignin);
 router.use(auth);
 router.get("/logout", adminController.actionLogout);
+
 router.get("/dashboard", adminController.viewDashboard);
+router.post("/dashboard/addBook", adminController.addBook);
 
 router.get("/product", adminController.viewProduct);
 router.post("/product", uploadSingle, adminController.addProduct);

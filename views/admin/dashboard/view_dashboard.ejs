@@ -19,12 +19,12 @@
               </button>
 
               <!-- Topbar Search -->
-              <form  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+              <form action="/admin/dashboard/addBook" method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                  <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                  <input type="text"  name="productId" class="form-control bg-light border-0 small" placeholder="Search for..."
                     aria-label="Search" aria-describedby="basic-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
+                    <button class="btn btn-primary" type="submit">
                       <i class="fas fa-search fa-sm"></i>
                     </button>
                   </div>
@@ -59,22 +59,31 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+              <%- include('../../partials/message.ejs') %>
               <!-- Page Heading -->
               <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+             
               <!-- Content Row -->
               <div class="row">
                 <div class="col-lg-6">
-                  <% for(let i = 0; i < product.length; i++){ %>
+                  <div class="col-sm-12 mb-3">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <% for(var i = 0; i < booking.length; i++){ %>
+                 
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary">Name Product</h6>
+                      <h6 class="m-0 font-weight-bold text-primary"><%= booking[i].productId.name %></h6>
                     </div>
                     <div class="card-body">
                       <p>Use Font Awesome Icons (included with this theme package) along with the circle
                         buttons as shown in the examples below!</p>
                     </div>
                   </div>
-                   <% } %>
+               
+                <% } %>
                 </div>
 
                 

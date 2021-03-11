@@ -12,11 +12,12 @@ seeder.connect('mongodb://localhost:27017/nusa', {
   seeder.loadModels([
     './models/Users',
     './models/Products',
-    './models/Bookings'
+    './models/Bookings',
+    './models/Trans',
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['Users' , 'Products' , 'Bookings'], function () {
+  seeder.clearModels(['Users' , 'Products' , 'Bookings' , 'Trans',], function () {
 
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
@@ -49,7 +50,8 @@ var data = [
         image:'images/1.PNG',
         price: 12000,
         description: 'barang ada',
-        barcode: 'adads'
+        barcode: 'adads',
+        bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
       },
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903445'),
@@ -60,7 +62,8 @@ var data = [
         image:'images/2.PNG',
         price: 13000,
         description: 'barang ada',
-        barcode: 'adads'
+        barcode: 'adads',
+        bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445'),
@@ -71,25 +74,28 @@ var data = [
         image:'images/3.PNG',
         price: 11000,
         description: 'barang ada',
-        barcode: 'adads'
+        barcode: 'adads',
+        bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
       },
     ]
   },
   {
     'model': 'Bookings',
+    'documents': [
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
+        productId:{ _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445') },
+      },
+    ]
+  },
+  {
+    'model': 'Trans',
     'documents': [  
       {
-        _id: mongoose.Types.ObjectId('4e96cbe292b97300fc903445'),
-        productId: {
-           _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445'),
-           name: 'dummy',
-           merk: 'japan',
-           type: 'mirror less',
-           status: 'non avalaible', 
-           price: 11000,
-           description: 'barang ada',
-           barcode: 'adads'
-          },
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445'),
+        productId: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+        ]
       },
     ]
   },

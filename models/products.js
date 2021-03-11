@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Schema;
+const  { ObjectId } = mongoose.Schema;
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -33,6 +33,11 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  bookingId: {
+    type: ObjectId,
+    ref: 'Bookings'
+  },
+  
 })
 
 module.exports = mongoose.model("Products", productSchema);

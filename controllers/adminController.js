@@ -3,6 +3,8 @@ const fs = require('fs-extra');
 const path = require('path');
 const users = require('../models/Users');
 const tbProduct = require('../models/Products');
+const tbBooking = require('../models/Bookings');
+const tbTrans = require('../models/Trans');
 
 module.exports = {
   viewSignIn: async (req, res) => {
@@ -13,7 +15,7 @@ module.exports = {
       if (req.session.user == null || req.session.user == undefined) {
         res.render('index', {
           alert,
-          title: "Staycation | Login"
+          title: "Nusa | Login"
         });
       } else {
         res.redirect('/admin/dashboard');
@@ -57,13 +59,22 @@ module.exports = {
 
   viewDashboard: async (req, res) => {
     try {
-      const product = await tbProduct.find();
+      const product = await tbProduct.find()
+      const booking = await tbBooking.find()
+      .populate({ path: 'productId', select: 'id name' });
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
       res.render('admin/dashboard/view_dashboard', {
-        title: "Staycation | Dashboard",
+        title: "Nusa | Dashboard",
         user: req.session.user,
         product,
+        booking,
+        alert
       });
     } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
       res.redirect('/admin/dashboard');
     }
   },
@@ -150,9 +161,47 @@ module.exports = {
       res.redirect('/admin/product');
     }
   },
-  
 
+  addBook: async (req, res) => {
+    const { productId } = req.body;
+    const book = await tbBooking.findOne({ productId: productId });
+    try {
+      if(book){
+        req.flash("alertMessage", "Product Already Choose");
+        req.flash("alertStatus", "danger");
+        res.redirect(`/admin/dashboard`);
+      } else {
+        await tbBooking.create({ productId });
+        req.flash("alertMessage", "Succes Add Product");
+        req.flash("alertStatus", "success");
+        res.redirect(`/admin/dashboard`);
+      }
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect(`/admin/dashboard`);
+    }
+  },
 
-
+  addTrans: async (req, res) => {
+    const [productId]  = req.body;
+    const product = await tbProduct.findOne({ _id: productId });
+    try {
+      if(!product){
+        req.flash("alertMessage", "Product Empty");
+        req.flash("alertStatus", "danger");
+        res.redirect(`/admin/dashboard`);
+      } else {
+        await tbBooking.create({ productId });
+        req.flash("alertMessage", "Succes Add Product");
+        req.flash("alertStatus", "success");
+        res.redirect(`/admin/dashboard`);
+      }
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect(`/admin/dashboard`);
+    }
+  },
 
 }
