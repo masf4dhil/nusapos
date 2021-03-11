@@ -66,24 +66,27 @@
               <!-- Content Row -->
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="col-sm-12 mb-3">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product">
-                      <i class="fas fa-plus"></i>
-                    </button>
+                  <div>
+                    <form action="/admin/dashboard/addTrans" method="POST" >
+                      <button class="btn btn-primary" type="submit"">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                      <% for(var i = 0; i < booking.length; i++){ %>
+                        <input type="hidden"  name="productId" value=<%= booking[i].productId._id %>  >
+                      
+                        <div class="card shadow mb-4">
+                          <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary"><%= booking[i].productId.name %></h6>
+                          </div>
+                          <div class="card-body">
+                            <p>Use Font Awesome Icons (included with this theme package) along with the circle
+                              buttons as shown in the examples below!</p>
+                          </div>
+                        </div>
+                       <% } %>
+                    </form>
                   </div>
-                  <% for(var i = 0; i < booking.length; i++){ %>
-                 
-                  <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary"><%= booking[i].productId.name %></h6>
-                    </div>
-                    <div class="card-body">
-                      <p>Use Font Awesome Icons (included with this theme package) along with the circle
-                        buttons as shown in the examples below!</p>
-                    </div>
-                  </div>
-               
-                <% } %>
+              
                 </div>
 
                 
