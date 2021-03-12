@@ -87,7 +87,11 @@ module.exports = {
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/product/view_product', { product, alert,
+      res.render('admin/product/view_product', {
+        title: "Nusa | Product",
+        user: req.session.user, 
+        product,
+        alert,
       });
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
