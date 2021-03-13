@@ -61,7 +61,7 @@ module.exports = {
     try {
       const product = await tbProduct.find()
       const booking = await tbBooking.find()
-      .populate({ path: 'productId', select: 'id name' });
+      .populate({ path: 'productId', select: 'id name price' });
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus };
@@ -188,29 +188,28 @@ module.exports = {
   },
 
   addTrans: async (req, res) => {
-    const { productId, dateIn, dateOut, jaminan ,time}  = req.body;
-    var totalDate = dateOut - dateIn;
+    const { productId, fdate, tdate, jaminan ,time , days}  = req.body;
     console.log("jaminan  " + jaminan);
     console.log("time  " + time);
-    console.log("dateIn  " + dateIn);
-    console.log("dateOut  " + dateOut);
-    console.log("totalDate  " + totalDate);
-    // try {
-    //   if(!productId){
-    //     req.flash("alertMessage", "Product Empty");
-    //     req.flash("alertStatus", "danger");
-    //     res.redirect(`/admin/dashboard`);
-    //   } else {
-    //     await tbTrans.create({ productId });
-    //     req.flash("alertMessage", "Succes Add Transaction");
-    //     req.flash("alertStatus", "success");
-    //     res.redirect(`/admin/dashboard`);
-    //   }
-    // } catch (error) {
-    //   req.flash("alertMessage", `${error.message}`);
-    //   req.flash("alertStatus", 'danger');
-    //   res.redirect(`/admin/dashboard`);
-    // }
+    console.log("fdate  " + fdate);
+    console.log("tdate  " + tdate);
+    console.log("days  " + days);
+    try {
+      if(!productId){
+        req.flash("alertMessage", "Product Empty");
+        req.flash("alertStatus", "danger");
+        res.redirect(`/admin/dashboard`);
+      } else {
+        await tbTrans.create({ productId });
+        req.flash("alertMessage", "Succes Add Transaction");
+        req.flash("alertStatus", "success");
+        res.redirect(`/admin/dashboard`);
+      }
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect(`/admin/dashboard`);
+    }
   },
 
 }
