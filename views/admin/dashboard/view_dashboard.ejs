@@ -94,9 +94,9 @@
                             <input class="form-control " type="text"  placeholder="<%= moment().format('DD-MMM-YY') %>" id="tdate" name="tdate" required >
                           </div>
 
-                          <!-- <div style="width: 6rem;" >
-                            <input class="form-control"  name="time" value="<%# moment().format('LT') %>" type="text" disabled />
-                          </div> -->
+                          <div style="width: 6rem;" >
+                            <input class="form-control"  name="time" value="<%= moment().format('LT') %>" type="text" disabled />
+                          </div>
                         </div>
                       </div>
 
@@ -131,7 +131,7 @@
                                 <input class="form-control" type="number" placeholder="Diskon" name="diskon" required>
                               </div>
                               <div class="col">
-                                <input class="form-control days-here" type="number" name="days" placeholder="Total rent" id="days" disabled>
+                                <input class="form-control days" type="number" name="days" placeholder="Total rent" id="days" disabled>
                               </div>
 
                             </div>

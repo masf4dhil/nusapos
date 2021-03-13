@@ -29,12 +29,6 @@
 
 <!-- script untuk search -->
 <script>
-  $('#datetimepicker').datetimepicker({
-    format: 'yyyy-mm-dd hh:ii'
-});
-</script>
-<script>
-
   function myFunction() {
     var input, filter, cards, cardContainer, h5, title, i;
     input = document.getElementById("myFilter");
@@ -56,10 +50,11 @@
   $(function () {
 
     $('#fdate').datepicker({
-      format: "dd-M-yy ",
+      format: "dd-M-yy",
       todayHighlight: 'TRUE',
       autoclose: true,
       minDate: 0,
+      startDate: new Date(),
       maxDate: '+1Y+6M'
     }).on('changeDate', function (ev) {
       $('#tdate').datepicker('setStartDate', $("#fdate").val());
