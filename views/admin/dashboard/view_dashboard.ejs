@@ -63,6 +63,7 @@
               
               <!-- Page Heading -->
               <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+          
              
               <!-- Content Row -->
               <div class="row">
@@ -70,17 +71,34 @@
                   <div>
                     
                     <form action="/admin/dashboard/addTrans" method="POST" >
+                      
                       <div class="container">
+                        
+                   
                         <div class="row">
                           <div class="col-0">
                             <button class="btn btn-primary" type="submit"">
                               <i class="fas fa-plus"></i>
                             </button>
                           </div>
-                          <div class="col-auto">
+
+                          <div class="col">
                             <div class="form-group">
-                              <!-- <label for="name">Jaminan</label> -->
-                              <select class="form-control" name="jaminan">
+                              <select class="form-control " name ="select2" id="select2" required>
+                                <option selected disabled value="">Member</option>
+                                <option>Car</option>
+                                <option>Bike</option>
+                                <option>Scooter</option>
+                                <option>Cycle</option>
+                                <option>Horse</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="form-group">
+                              <select class="form-control" name="jaminan" required>
+                                <option selected disabled value="">Jaminan</option>
                                 <option value="KTP">KTP / Kartu Pelajar</option>
                                 <option value="kartukeluarga">Kartu Keluarga</option>
                               </select>
@@ -94,9 +112,9 @@
                             <input class="form-control " type="text"  placeholder="<%= moment().format('DD-MMM-YY') %>" id="tdate" name="tdate" required >
                           </div>
 
-                          <div style="width: 6rem;" >
-                            <input class="form-control"  name="time" value="<%= moment().format('LT') %>" type="text" disabled />
-                          </div>
+                          <!-- <div style="width: 6rem;" > -->
+                            <input class="form-control"  name="time" value="<%= moment().format('LT') %>" type="hidden"  />
+                          <!-- </div> -->
                         </div>
                       </div>
 
@@ -119,7 +137,7 @@
                             <div class="row">
                               <div class="col">
                                 <div class="form-group" >
-                                  <select class="form-control" name="typeDiskon" required>
+                                  <select class="form-control" name="typeDiskon" >
                                     <option selected disabled value="">Type Diskon</option>
                                     <option value="Persen">Persen</option>
                                     <option value="Potongan">Potongan</option>
@@ -128,17 +146,17 @@
                               </div>
 
                               <div class="col">
-                                <input class="form-control" type="number" placeholder="Diskon" name="diskon" required>
+                                <input class="form-control" type="number" placeholder="Diskon" name="diskon" >
                               </div>
                               <div class="col">
-                                <input class="form-control days" type="number" name="days" placeholder="Total rent" id="days" disabled>
+                                <input class="form-control" type="number" name="days" placeholder="Total rent" id="days"  >
                               </div>
 
                             </div>
                            
                            
 
-                            <input class="form-control" type="text" placeholder="Description" name="desctription" >
+                            <input class="form-control" type="text" placeholder="Description" name="desc" >
                           </div>
                         </div>
                        <% } %>

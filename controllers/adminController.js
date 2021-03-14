@@ -188,28 +188,31 @@ module.exports = {
   },
 
   addTrans: async (req, res) => {
-    const { productId, fdate, tdate, jaminan ,time , days}  = req.body;
+    const { productId, fdate, tdate, jaminan ,time , days , select2, diskon, desc}  = req.body;
     console.log("jaminan  " + jaminan);
     console.log("time  " + time);
     console.log("fdate  " + fdate);
     console.log("tdate  " + tdate);
     console.log("days  " + days);
-    try {
-      if(!productId){
-        req.flash("alertMessage", "Product Empty");
-        req.flash("alertStatus", "danger");
-        res.redirect(`/admin/dashboard`);
-      } else {
-        await tbTrans.create({ productId });
-        req.flash("alertMessage", "Succes Add Transaction");
-        req.flash("alertStatus", "success");
-        res.redirect(`/admin/dashboard`);
-      }
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect(`/admin/dashboard`);
-    }
+    console.log("select2  " + select2);
+    console.log("diskon  " + diskon); 
+    console.log("desc  " + desc); 
+    // try {
+    //   if(!productId){
+    //     req.flash("alertMessage", "Product Empty");
+    //     req.flash("alertStatus", "danger");
+    //     res.redirect(`/admin/dashboard`);
+    //   } else {
+    //     await tbTrans.create({ productId });
+    //     req.flash("alertMessage", "Succes Add Transaction");
+    //     req.flash("alertStatus", "success");
+    //     res.redirect(`/admin/dashboard`);
+    //   }
+    // } catch (error) {
+    //   req.flash("alertMessage", `${error.message}`);
+    //   req.flash("alertStatus", 'danger');
+    //   res.redirect(`/admin/dashboard`);
+    // }
   },
 
 }
