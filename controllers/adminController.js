@@ -5,6 +5,7 @@ const users = require('../models/Users');
 const tbProduct = require('../models/Products');
 const tbBooking = require('../models/Bookings');
 const tbTrans = require('../models/Trans');
+const tbMember = require('../models/Member');
 
 module.exports = {
   viewSignIn: async (req, res) => {
@@ -61,6 +62,7 @@ module.exports = {
     try {
       const product = await tbProduct.find()
       const booking = await tbBooking.find()
+      const member = await tbMember.find()
       .populate({ path: 'productId', select: 'id name price' });
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -70,6 +72,7 @@ module.exports = {
         user: req.session.user,
         product,
         booking,
+        member,
         alert
       });
     } catch (error) {

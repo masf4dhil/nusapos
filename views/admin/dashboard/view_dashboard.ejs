@@ -86,11 +86,10 @@
                             <div class="form-group">
                               <select class="form-control " name ="select2" id="select2" required>
                                 <option selected disabled value="">Member</option>
-                                <option>Car</option>
-                                <option>Bike</option>
-                                <option>Scooter</option>
-                                <option>Cycle</option>
-                                <option>Horse</option>
+                                <% for(var i = 0; i < member.length; i++){ %>
+                                <option><%= member[i].Nama_EKTP %></option>
+                         
+                                <% } %>
                               </select>
                             </div>
                           </div>
