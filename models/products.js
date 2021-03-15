@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema({
     required: true
   },
   barcode: {
-    type: String,
+    type: Number,
     required: true
   },
   bookingId: {

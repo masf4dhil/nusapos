@@ -12,6 +12,9 @@ router.get("/dashboard", adminController.viewDashboard);
 router.post("/dashboard/addBook", adminController.addBook);
 router.post("/dashboard/addTrans", adminController.addTrans);
 
+
+router.get("/member", adminController.viewMember);
+
 router.get("/product", adminController.viewProduct);
 router.post("/product", uploadSingle, adminController.addProduct);
 router.put("/product", uploadSingle, adminController.editProduct);

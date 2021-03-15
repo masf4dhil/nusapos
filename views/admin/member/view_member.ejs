@@ -1,6 +1,7 @@
 <%- include('../../partials/header.ejs') %>
-<body id="page-top">
+
 <!-- Page Wrapper -->
+<body id="page-top">
 <div id="wrapper">
 
   <%- include('../../partials/sidebar.ejs') %>
@@ -18,11 +19,11 @@
         <%- include('../../partials/message.ejs') %>
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Product</h1>
+        <h1 class="h3 mb-4 text-gray-800">Member</h1>
         <!-- End Heading -->
 
         <!-- nanti di sini diisi table nya -->
-        <%- include('table_product.ejs') %>
+        <%- include('table_member.ejs') %>
 
       </div>
       <!-- /.container-fluid -->
@@ -37,7 +38,7 @@
 
 </div>
 <!-- End of Page Wrapper -->
-</body>
+
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
   <i class="fas fa-angle-up"></i>
@@ -63,28 +64,5 @@
   </div>
 </div>
 
-<%- include('add_product.ejs') %>
-<%- include('edit_product.ejs') %>
 <%- include('../../partials/js.ejs') %>
-
-<script>
-  $('#dataTable').on('click', '.button-update', function () {
-    let id = $(this).data('id');
-    let name = $(this).data('name');
-    let merk = $(this).data('merk');
-    let type = $(this).data('type');
-    let status = $(this).data('status');
-    let price = $(this).data('price');
-    let description = $(this).data('description');
-    let barcode = $(this).data('barcode');
-    $('#edit-product').modal('show');
-    $('.id').val(id);
-    $('.name').val(name);
-    $('.merk').val(merk);
-    $('.type').val(type);
-    $('.status').val(status);
-    $('.price').val(price);
-    $('.description').val(description);
-    $('.barcode').val(barcode);
-  })
-</script>
+</body>

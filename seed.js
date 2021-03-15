@@ -68,7 +68,7 @@ var data = [
         image:'images/1.PNG',
         price: 12000,
         description: 'barang ada',
-        barcode: 'adads',
+        barcode: '89981115',
         bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
       },
       {
@@ -80,7 +80,7 @@ var data = [
         image:'images/2.PNG',
         price: 13000,
         description: 'barang ada',
-        barcode: 'adads',
+        barcode: '89981111',
         bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
       },
       {
@@ -92,7 +92,7 @@ var data = [
         image:'images/3.PNG',
         price: 11000,
         description: 'barang ada',
-        barcode: 'adads',
+        barcode: '89981111',
         bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
       },
     ]

@@ -1,0 +1,39 @@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product">
+      <i class="fas fa-plus"></i>
+    </button> -->
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>No Member</th>
+            <th>NIK</th>
+            <th>Nama</th>
+            <th>Instagram</th> 
+            <th>No HP</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < member.length; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= member[i].No_Member %></td>
+            <td><%= member[i].NIK %></td>
+            <td><%= member[i].Nama_EKTP %></td>
+            <td><%= member[i].Instagram %></td>
+            <td><%= member[i].NoHP %></td>
+            <td><%= member[i].Status %></td>
+          </tr>
+          <% }%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -82,6 +82,26 @@ module.exports = {
     }
   },
 
+  viewMember: async (req, res) => {
+    try {
+      const member = await tbMember.find();
+      // untuk alert message dia call component dari partials/message.ejs
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+      res.render('admin/member/view_member', {
+        title: "Nusa | Product",
+        user: req.session.user, 
+        member,
+        alert,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/member");
+    }
+  },
+
   viewProduct: async (req, res) => {
     try {
       const product = await tbProduct.find();
