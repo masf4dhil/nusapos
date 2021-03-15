@@ -61,8 +61,8 @@ module.exports = {
   viewDashboard: async (req, res) => {
     try {
       const product = await tbProduct.find()
-      const booking = await tbBooking.find()
       const member = await tbMember.find()
+      const booking = await tbBooking.find()
       .populate({ path: 'productId', select: 'id name price' });
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
@@ -192,6 +192,7 @@ module.exports = {
 
   addTrans: async (req, res) => {
     const { productId, fdate, tdate, jaminan ,time , days , select2, diskon, desc}  = req.body;
+    console.log("productId  " + productId);
     console.log("jaminan  " + jaminan);
     console.log("time  " + time);
     console.log("fdate  " + fdate);

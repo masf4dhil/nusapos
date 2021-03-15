@@ -87,7 +87,7 @@
                               <select class="form-control " name ="select2" id="select2" required>
                                 <option selected disabled value="">Member</option>
                                 <% for(var i = 0; i < member.length; i++){ %>
-                                <option><%= member[i].Nama_EKTP %></option>
+                                <option value=<%= member[i]._id %> ><%= member[i].Nama_EKTP %></option>
                          
                                 <% } %>
                               </select>
@@ -118,7 +118,7 @@
                       </div>
 
                       <% for(var i = 0; i < booking.length; i++){ %>
-                        <input type="hidden"  name="productId" value=<%= booking[i].productId._id %>  >
+                        <input type="hidden"  name="productId"  value=<%= booking[i].productId._id %>  >
                         <div class="card shadow mb-4">
                           <div class="card-header">
                             <div class="row justify-content-between">
@@ -126,17 +126,18 @@
                                 <h6 class="m-0 font-weight-bold text-primary"><%= booking[i].productId.name %></h6>
                               </div>
                               <div class="col-4">
-                                <h6 class="m-11 font-weight-bold text-primary">Rp. <%= booking[i].productId.price %></h6>
+                                <input class="form-control" type="number" id="price" name="price" value=<%= booking[i].productId.price %> >
+                                
+                                <!-- <h6 id="price" name="price" class="m-11 font-weight-bold text-primary">Rp. <%# booking[i].productId.price %></h6> -->
                               </div>
-                            </div>
-                            
+                            </div> 
                           </div>
                           
                           <div class="card-body">
                             <div class="row">
                               <div class="col">
                                 <div class="form-group" >
-                                  <select class="form-control" name="typeDiskon" >
+                                  <select class="form-control" name="typeDiskon" id="typeDiskon" >
                                     <option selected disabled value="">Type Diskon</option>
                                     <option value="Persen">Persen</option>
                                     <option value="Potongan">Potongan</option>
@@ -145,20 +146,27 @@
                               </div>
 
                               <div class="col">
-                                <input class="form-control" type="number" placeholder="Diskon" name="diskon" >
+                                <input class="form-control" type="number" placeholder="Diskon" name="diskon" id="diskon" >
                               </div>
                               <div class="col">
                                 <input class="form-control" type="number" name="days" placeholder="Total rent" id="days"  >
                               </div>
-
                             </div>
-                           
-                           
-
-                            <input class="form-control" type="text" placeholder="Description" name="desc" >
+                            <input class="form-control" type="text"  onchange="calculate()" placeholder="Description" name="desc" required>
                           </div>
                         </div>
                        <% } %>
+                      
+
+                       <div style="width: 18rem;" class="card shadow mb-4">
+                        <ul class="list-group list-group-flush">
+                          <input class="form-control" type="totalPrice" name="totalPrice" >
+                          <li  id="totalPrice" name="totalPrice"  class="list-group-item">Sub Total :  Rp. <%= booking.productId %> </li>
+                          <li id="totalDiskon" name="totalDiskon" class="list-group-item">Diskon    : </li>
+                          <li class="list-group-item">Total     : </li>
+                        </ul>
+                      </div>
+
                     </form>
                   </div>
               
@@ -178,7 +186,7 @@
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs">
-                              <%= product[i].name %></div>
+                              <%= product[i].name %> </div>
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-0">
                               <%= product[i].status %></div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <%= product[i].price %></div>
