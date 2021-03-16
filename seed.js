@@ -103,6 +103,8 @@ var data = [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
         productId:{ _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445') },
+        typeDiskon:"Potongan",
+        diskon: 10000,
       },
     ]
   },

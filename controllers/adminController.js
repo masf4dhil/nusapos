@@ -123,6 +123,27 @@ module.exports = {
     }
   },
 
+  viewBarcode: async (req, res) => {
+    try {
+      // const product = await tbProduct.find();
+      // console.log("product " + product);
+      // untuk alert message dia call component dari partials/message.ejs
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+      res.render('admin/barcode/view_barcode', {
+        title: "Nusa | Barcode",
+        user: req.session.user, 
+        // product,
+        alert,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/barcode");
+    }
+  },
+
   addProduct: async (req, res) => {
     try {
       const { name, merk, type , status, price , description , barcode  } = req.body;

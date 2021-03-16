@@ -57,16 +57,35 @@
   $('#select2').select2();
 </script>
 
+
 <script>
-    function calculate(){
-      var diskon = [document.getElementById(diskon)];
-    var   price, subtotal ,totalPrice ;
-    // subtotal = price - typeDiskon;
-    alert("value " + diskon );
-    //  alert("value " + price.reduce((a, b) => a + b, 0));
-    // document.getElementById("totalDiskon").value = typeDiskon;
-  }
+  function hitung(){
+    var dis = [];
+    var day = document.getElementById("days").value;
+    var diskon = document.getElementById("diskon").value;
+   alert("hitung " + dis );
+  // document.getElementById("totalDiskon").value = typeDiskon;
+}
+
 </script>
+
+<script>
+addNumbers = function(el){
+  var subtotal = parseInt(document.getElementById("subtotal2").value);
+    var total = 0;
+    for( var i = 1; i <= 2; i++ ) {
+        var val = parseInt(document.getElementById("diskon" + i).value);
+        if(val>0){
+            total += val;
+        }      
+    }
+   var diskon = document.getElementById('total').value = total;
+   var finalTotal = subtotal - diskon;
+   document.getElementById('totalAll').value = finalTotal;
+}
+
+</script>
+
 
 
 <script>
@@ -96,6 +115,14 @@
       var endD = new Date(end);
       var diff = parseInt((endD.getTime() - startD.getTime()) / (24 * 3600 * 1000));
       $("#days").val(diff);
+      var add = parseInt(document.getElementById("subtotal1").value);
+      var days = parseInt(document.getElementById("days").value);
+      var subtotal = add * days;
+      if(subtotal > 0){
+        document.getElementById('subtotal2').value = subtotal;
+        
+      }
+   
     });
 
   });
