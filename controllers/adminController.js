@@ -6,6 +6,7 @@ const tbProduct = require('../models/Products');
 const tbBooking = require('../models/Bookings');
 const tbTrans = require('../models/Trans');
 const tbMember = require('../models/Member');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   viewSignIn: async (req, res) => {
@@ -232,15 +233,23 @@ module.exports = {
   },
 
   addTrans: async (req, res) => {
-    const { productId, fdate, tdate, jaminan ,time , days , select2, diskon, desc}  = req.body;
+    const id = uuidv4();
+    const _id = id.slice(0, 8)
+    const { productId, fdate, tdate, jaminan ,time , days , select2, typeDiskon, everyDiskon, totalDiskon, desc}  = req.body;
+    const diskonID = typeDiskon.slice(0, 2);
+
+    console.log("Diskon ID " , diskonID);
+    console.log("_id  " + _id);
     console.log("productId  " + productId);
     console.log("jaminan  " + jaminan);
     console.log("time  " + time);
     console.log("fdate  " + fdate);
     console.log("tdate  " + tdate);
     console.log("days  " + days);
-    console.log("select2  " + select2);
-    console.log("diskon  " + diskon); 
+    console.log("memberID  " + select2);
+    console.log("typeDiskon  " + typeDiskon); 
+    console.log("everyDiskon  " + everyDiskon); 
+    console.log("totalDiskon  " + totalDiskon); 
     console.log("desc  " + desc); 
     // try {
     //   if(!productId){
@@ -248,7 +257,7 @@ module.exports = {
     //     req.flash("alertStatus", "danger");
     //     res.redirect(`/admin/dashboard`);
     //   } else {
-    //     await tbTrans.create({ productId });
+    //     await tbTrans.create({_id,select2, productId, fdate, tdate, jaminan ,time , days , select2 });
     //     req.flash("alertMessage", "Succes Add Transaction");
     //     req.flash("alertStatus", "success");
     //     res.redirect(`/admin/dashboard`);

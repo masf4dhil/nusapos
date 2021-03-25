@@ -58,29 +58,23 @@
 </script>
 
 
-<script>
-  function hitung(){
-    var dis = [];
-    var day = document.getElementById("days").value;
-    var diskon = document.getElementById("diskon").value;
-   alert("hitung " + dis );
-  // document.getElementById("totalDiskon").value = typeDiskon;
-}
 
-</script>
 
 <script>
+
 addNumbers = function(el){
   var subtotal = parseInt(document.getElementById("subtotal2").value);
+  var idDiskon = parseInt(document.getElementById("arrayidDiskon").value);
     var total = 0;
-    for( var i = 1; i <= 2; i++ ) {
+    for( var i = 1; i <= idDiskon; i++ ) {
         var val = parseInt(document.getElementById("diskon" + i).value);
         if(val>0){
             total += val;
         }      
     }
-   var diskon = document.getElementById('total').value = total;
+   var diskon = document.getElementById('totalDiskon').value = total;
    var finalTotal = subtotal - diskon;
+
    document.getElementById('totalAll').value = finalTotal;
 }
 

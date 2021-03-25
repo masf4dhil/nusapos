@@ -145,12 +145,12 @@
                                   </select>
                                 </div>
                               </div>
-
                               <div class="col">
-                                <input type="text" onkeyup="addNumbers(this)" id="diskon<%= idDiskon + i  %>">
+                                <input type="text" class="form-control" onkeyup="addNumbers(this)" name="everyDiskon" id="diskon<%= idDiskon + i  %>">
+                                <!-- ini buat dapetin value jumlah array nya -->
+                                <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  booking.length  %> >
                               </div>
                               <div class="col">
-                                <!-- <input class="form-control" type="number" name="days" placeholder="Total rent" id="days"  > -->
                               </div>
                             </div>
                             <input class="form-control" type="text"  placeholder="Description" name="desc" required>
@@ -165,7 +165,7 @@
                           <input value=" <%= subtotal %>" type="hidden" id="subtotal1" disabled/>
                           <li class="list-group-item"> Subtotal :  <input value=" <%= subtotal %>" type="text" id="subtotal2" disabled/></li>
                             <input class="list-group-item" type="number" name="days" placeholder="Total rent" id="days"  >
-                            <li class="list-group-item">Diskon     :   <input type="text" id="total" disabled/> </li>
+                            <li class="list-group-item">Diskon     :   <input type="text" id="totalDiskon" name="totalDiskon" /> </li>
                           <li class="list-group-item">Total     : <input type="text" id="totalAll" disabled/> </li>
                         </ul>
                       </div>

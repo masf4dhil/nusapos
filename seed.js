@@ -15,10 +15,11 @@ seeder.connect('mongodb://localhost:27017/nusa', {
     './models/Products',
     './models/Bookings',
     './models/Trans',
+    './models/Diskon',
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['Users' , 'Products' , 'Bookings' , 'Trans','Member' ], function () {
+  seeder.clearModels(['Users' , 'Products' , 'Bookings' , 'Trans','Member', 'Diskon' ], function () {
 
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
@@ -103,8 +104,21 @@ var data = [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
         productId:{ _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445') },
-        typeDiskon:"Potongan",
-        diskon: 10000,
+      },
+
+    ]
+  },
+  {
+    'model': 'Diskon',
+    'documents': [
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc911445'),
+        typeDiskon:"",
+        amount: 0,
+        desc:"",
+        transId: [
+
+        ],
       },
     ]
   },
@@ -117,13 +131,16 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
         ],
         memberId:{ _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315') },
+        diskonId: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc911445') },
+        ],
         fdate: '11-1-2021',
         tdate: '12-1-2021',
         days: 1,
         jaminan: 'KK',
-        diskon: 11111,
+        totalDiskon: 11111,
+        total: 11111,
         time: '11:02 PM',
-        desc: 'barang ada',
       },
     ]
   },
