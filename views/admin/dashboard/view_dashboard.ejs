@@ -146,7 +146,7 @@
                                 </div>
                               </div>
                               <div class="col">
-                                <input type="text" class="form-control" onkeyup="addNumbers(this)" name="everyDiskon" id="diskon<%= idDiskon + i  %>">
+                                <input type="number" class="form-control" onkeyup="addNumbers(this)" name="everyDiskon" id="diskon<%= idDiskon + i  %>">
                                 <!-- ini buat dapetin value jumlah array nya -->
                                 <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  booking.length  %> >
                               </div>
@@ -162,11 +162,10 @@
                        <div style="width: 18rem;" class="card shadow mb-4">
                        
                         <ul class="list-group list-group-flush">
-                          <input value=" <%= subtotal %>" type="hidden" id="subtotal1" disabled/>
-                          <li class="list-group-item"> Subtotal :  <input value=" <%= subtotal %>" type="text" id="subtotal2" disabled/></li>
-                            <input class="list-group-item" type="number" name="days" placeholder="Total rent" id="days"  >
-                            <li class="list-group-item">Diskon     :   <input type="text" id="totalDiskon" name="totalDiskon" /> </li>
-                          <li class="list-group-item">Total     : <input type="text" id="totalAll" disabled/> </li>
+                          <li class="list-group-item"> Subtotal :  <input  class="form-control" value=" <%= subtotal %>" type="text" id="subtotal2" name="subtotal2" readonly="true" /></li>
+                          <li class="list-group-item"> Total Rent :  <input class="form-control"  type="number" name="days" placeholder="Total rent" id="days" readonly="true" /></li>
+                            <li class="list-group-item">Diskon     :   <input class="form-control"  type="text" id="totalDiskon" name="totalDiskon" readonly="true" /> </li>
+                          <li class="list-group-item">Total     : <input class="form-control"  type="text" id="totalAll" name="totalAll" readonly="true" /> </li>
                         </ul>
                       </div>
 

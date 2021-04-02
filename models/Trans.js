@@ -10,10 +10,6 @@ const transSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'Member'
   },
-  diskonId: [{
-    type: ObjectId,
-    ref: 'Diskon'
-  }],
   fdate: {
     type: String,
     required: true
@@ -30,6 +26,15 @@ const transSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  typeDiskon:[{
+    type: String,
+  }],
+  diskon:[{
+    type: Number,
+  }],
+  subtotal:[{
+    type: Number,
+  }],
   totalDiskon: {
     type: Number,
   },
@@ -40,6 +45,9 @@ const transSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  desc: [{
+    type: String,
+  }],
 })
 
 module.exports = mongoose.model("Trans", transSchema);

@@ -112,7 +112,7 @@ var data = [
     'model': 'Diskon',
     'documents': [
       {
-        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc911445'),
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d'),
         typeDiskon:"",
         amount: 0,
         desc:"",
@@ -131,16 +131,17 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
         ],
         memberId:{ _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315') },
-        diskonId: [
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc911445') },
-        ],
+        time: '11.30 PM',
         fdate: '11-1-2021',
         tdate: '12-1-2021',
         days: 1,
+        typeDiskon: ['Potongan' , 'Persen'],
+        diskon:[1200, 1200],
         jaminan: 'KK',
+        subtotal: 11111,
         totalDiskon: 11111,
-        total: 11111,
-        time: '11:02 PM',
+        total: 1111,
+        desc:['as' , 'Perseasn'],
       },
     ]
   },

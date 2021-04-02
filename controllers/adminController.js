@@ -235,10 +235,9 @@ module.exports = {
   addTrans: async (req, res) => {
     const id = uuidv4();
     const _id = id.slice(0, 8)
-    const { productId, fdate, tdate, jaminan ,time , days , select2, typeDiskon, everyDiskon, totalDiskon, desc}  = req.body;
-    const diskonID = typeDiskon.slice(0, 2);
 
-    console.log("Diskon ID " , diskonID);
+    const { productId, fdate, tdate, jaminan ,time , days , select2,subtotal2, typeDiskon, everyDiskon, totalDiskon, totalAll,  desc}  = req.body;
+  
     console.log("_id  " + _id);
     console.log("productId  " + productId);
     console.log("jaminan  " + jaminan);
@@ -249,24 +248,31 @@ module.exports = {
     console.log("memberID  " + select2);
     console.log("typeDiskon  " + typeDiskon); 
     console.log("everyDiskon  " + everyDiskon); 
+    console.log("subtotal2  " + subtotal2); 
     console.log("totalDiskon  " + totalDiskon); 
+    console.log("totalAll  " + totalAll); 
     console.log("desc  " + desc); 
-    // try {
-    //   if(!productId){
-    //     req.flash("alertMessage", "Product Empty");
-    //     req.flash("alertStatus", "danger");
-    //     res.redirect(`/admin/dashboard`);
-    //   } else {
-    //     await tbTrans.create({_id,select2, productId, fdate, tdate, jaminan ,time , days , select2 });
-    //     req.flash("alertMessage", "Succes Add Transaction");
-    //     req.flash("alertStatus", "success");
-    //     res.redirect(`/admin/dashboard`);
-    //   }
-    // } catch (error) {
-    //   req.flash("alertMessage", `${error.message}`);
-    //   req.flash("alertStatus", 'danger');
-    //   res.redirect(`/admin/dashboard`);
-    // }
+    try {
+      if(!productId){
+        req.flash("alertMessage", "Product Empty");
+        req.flash("alertStatus", "danger");
+        res.redirect(`/admin/dashboard`);
+      } else {
+        //This big shit
+        // const product = await tbProduct.find({ _id : productId});
+        // product.status = "NOT AVALAIBLE";
+        // await product.save();
+        await tbTrans.create({productId ,select2, time, fdate, tdate, days ,typeDiskon , everyDiskon , jaminan ,subtotal2 ,totalDiskon, totalAll ,desc});
+        req.flash("alertMessage", "Succes Add Transaction");
+        req.flash("alertStatus", "success");
+        res.redirect(`/admin/dashboard`);
+        await tbBooking.remove()
+      }
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect(`/admin/dashboard`);
+    }
   },
 
 }
