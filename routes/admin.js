@@ -15,6 +15,8 @@ router.post("/dashboard/addTrans", adminController.addTrans);
 
 router.get("/member", adminController.viewMember);
 
+router.get("/transaction", adminController.viewTransaction);
+
 // router.get("/barcode", adminController.viewBarcode);
 router.get("/product", adminController.viewProduct);
 router.post("/product", uploadSingle, adminController.addProduct);

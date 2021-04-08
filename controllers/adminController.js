@@ -103,6 +103,27 @@ module.exports = {
     }
   },
 
+  viewTransaction: async (req, res) => {
+    try {
+      const trans = await tbTrans.find()
+      .populate({ path: 'memberId ', select: 'Nama_EKTP' })
+      .populate({ path: 'productId ', select: 'name' })
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+      res.render('admin/transaction/view_transaction', {
+        title: "Nusa | Transaction",
+        user: req.session.user, 
+        trans,
+        alert,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/transaction");
+    }
+  },
+
   viewProduct: async (req, res) => {
     try {
       const product = await tbProduct.find();
@@ -213,10 +234,12 @@ module.exports = {
 
   addBook: async (req, res) => {
     const { productId } = req.body;
-    const book = await tbBooking.findOne({ productId: productId });
+    const booking = await tbBooking.find()
+    .populate({ path: 'productId', select: 'id name price' });
+    const book = await tbBooking.find({ productId: productId , status : 'avalaible' });
     try {
       if(book){
-        req.flash("alertMessage", "Product Already Choose");
+        req.flash("alertMessage", "Product already choose or not avalaible");
         req.flash("alertStatus", "danger");
         res.redirect(`/admin/dashboard`);
       } else {
@@ -259,14 +282,14 @@ module.exports = {
         res.redirect(`/admin/dashboard`);
       } else {
         //This big shit
-        // const product = await tbProduct.find({ _id : productId});
-        // product.status = "NOT AVALAIBLE";
-        // await product.save();
+        const product = await tbProduct.find({ _id : '5e96cbe292b97300fc903145'});
+        product.status = "NOT AVALAIBLE";
+        await product.save();
         await tbTrans.create({productId ,select2, time, fdate, tdate, days ,typeDiskon , everyDiskon , jaminan ,subtotal2 ,totalDiskon, totalAll ,desc});
         req.flash("alertMessage", "Succes Add Transaction");
         req.flash("alertStatus", "success");
         res.redirect(`/admin/dashboard`);
-        await tbBooking.remove()
+        await tbBooking.deleteMany();
       }
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);

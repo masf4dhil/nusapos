@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema;
 const transSchema = new mongoose.Schema({
   productId: [{
     type: ObjectId,
-    ref: 'Bookings'
+    ref: 'Products'
   }],
   memberId: {
     type: ObjectId,

@@ -37,7 +37,8 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 6000000 }
+  // ini nanti di uncomment buat max time session nya
+  // cookie: { maxAge: 600000 }
 }))
 app.use(flash());
 
