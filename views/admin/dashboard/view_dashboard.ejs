@@ -115,16 +115,17 @@
                       <% var subtotal = 0;  %>
                       <% var idDiskon = 1;  %>
                       <% for(var i = 0; i < booking.length; i++){ %>
-                        <input class="form-control" type="hidden" value=<%= subtotal += booking[i].productId.price %> >
-                        <input type="hidden"  name="productId"  value=<%= booking[i].productId._id %>  >
+                        <% for(var a = 0; a < booking[i].productId.length; a++){ %>
+                        <input class="form-control" type="hidden" value=<%= subtotal += booking[i].productId[a].price %> >
+                        <input type="hidden"  name="productId"  value=<%= booking[i].productId[a]._id %>  >
                         <div class="card shadow mb-4">
                           <div class="card-header">
                             <div class="row justify-content-between">
                               <div class="col-4">
-                                <h6 class="m-0 font-weight-bold text-primary"><%= booking[i].productId.name %></h6>
+                                <h6 class="m-0 font-weight-bold text-primary"><%= booking[i].productId[a].name %></h6>
                               </div>
                               <div class="col-4">
-                                <input class="form-control" type="number" id="price" name="price" value= <%= booking[i].productId.price %> >
+                                <input class="form-control" type="number" id="price" name="price" value= <%= booking[i].productId[a].price %> >
                                
                               </div>
                             </div> 
@@ -144,7 +145,7 @@
                               <div class="col">
                                 <input type="number" class="form-control" onkeyup="addNumbers(this)" name="everyDiskon" id="diskon<%= idDiskon + i  %>">
                                 <!-- ini buat dapetin value jumlah array nya -->
-                                <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  booking.length  %> >
+                                <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  booking[i].productId.length  %> >
                               </div>
                               <div class="col">
                               </div>
@@ -152,6 +153,7 @@
                             <input class="form-control" type="text"  placeholder="Description" name="desc" required>
                           </div>
                         </div>
+                        <% } %>
                        <% } %>
                       
 

@@ -234,9 +234,7 @@ module.exports = {
 
   addBook: async (req, res) => {
     const { productId } = req.body;
-    const booking = await tbBooking.find()
-    .populate({ path: 'productId', select: 'id name price' });
-    const book = await tbBooking.find({ productId: productId , status : 'avalaible' });
+    const book = await tbBooking.findOne({ productId: productId });
     try {
       if(book){
         req.flash("alertMessage", "Product already choose or not avalaible");
