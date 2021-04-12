@@ -113,13 +113,18 @@ var data = [
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d'),
-        typeDiskon:"",
-        amount: 0,
-        desc:"",
-        transId: [
-
-        ],
+        type:"Percent",
+        amount: 10,
+        desc:"Diskon ramadhan sebesar 10%",
+        status : "Aktif"
       },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc911441'),
+        type:"Potongan",
+        amount : 1000,
+        desc: "Potongan akhir tahun",
+        status : "Aktif"
+      }
     ]
   },
   {

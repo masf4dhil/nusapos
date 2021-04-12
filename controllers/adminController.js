@@ -6,6 +6,7 @@ const tbProduct = require('../models/Products');
 const tbBooking = require('../models/Bookings');
 const tbTrans = require('../models/Trans');
 const tbMember = require('../models/Member');
+const tbDiscount = require('../models/Diskon')
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
@@ -166,9 +167,46 @@ module.exports = {
     }
   },
 
+  viewDiscount: async (req, res) => {
+    try {
+      const discount = await tbDiscount.find();
+      // untuk alert message dia call component dari partials/message.ejs
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+      res.render('admin/discount/view_discount', {
+        title: "Nusa | Product",
+        user: req.session.user,
+        discount,
+        alert,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/discount");
+    }
+  },
+
+  addDiscount: async (req, res) => {
+    try {
+      const { type, amount, desc, status } = req.body;
+      console.log(type)
+      console.log(desc)
+      await tbDiscount.create({ type, amount, desc , status  });
+      req.flash("alertMessage", "Succes Add Discount");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/discount");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/discount");
+    }
+  },
+
   addProduct: async (req, res) => {
     try {
       const { name, merk, type , status, price , description , barcode  } = req.body;
+      console.log(name)
       await tbProduct.create({ name, merk, type , status,  image: `images/${req.file.filename}` , price , description , barcode  });
       req.flash("alertMessage", "Succes Add Product");
       req.flash("alertStatus", "success");

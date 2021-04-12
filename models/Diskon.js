@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
 const diskonSchema = new mongoose.Schema({
-  typeDiskon: {
+  type: {
     type: String,
   },
   amount: {
@@ -11,11 +11,10 @@ const diskonSchema = new mongoose.Schema({
   desc: {
     type: String,
   },
-  // ini trans id nya dapet ketika apa?
-  transId: [{
-    type: ObjectId,
-    ref: 'Trans'
-  }]
+  status: {
+    type: String,
+  }
+
 })
 
 module.exports = mongoose.model("Diskon", diskonSchema);
