@@ -190,8 +190,26 @@ module.exports = {
   addDiscount: async (req, res) => {
     try {
       const { type, amount, desc, status } = req.body;
-      console.log(type)
-      console.log(desc)
+      if (type == "" || amount == "" || desc == "" || status == "") {
+        req.flash("alertMessage", "Data belum lengkap");
+        req.flash("alertStatus", 'danger');
+        res.redirect("/admin/discount");
+        return
+      }
+
+      if (type == "Percent" && amount > 100) {
+        req.flash("alertMessage", "Maksimal 100%");
+        req.flash("alertStatus", 'danger');
+        res.redirect("/admin/discount");
+        return
+      }
+
+      if (amount < 0) {
+        req.flash("alertMessage", "Amount tidak boleh kurang dari 0");
+        req.flash("alertStatus", 'danger');
+        res.redirect("/admin/discount");
+        return
+      }
       await tbDiscount.create({ type, amount, desc , status  });
       req.flash("alertMessage", "Succes Add Discount");
       req.flash("alertStatus", "success");
@@ -221,7 +239,29 @@ module.exports = {
   editDiscount: async (req, res) => {
     try {
       const { id, type, amount, desc, status } = req.body;
-      const discount = await tbDiscount.findOne({ _id : id }) 
+      const discount = await tbDiscount.findOne({ _id : id })
+
+      if (type == "" || amount == "" || desc == "" || status == "") {
+        req.flash("alertMessage", "Data belum lengkap");
+        req.flash("alertStatus", 'danger');
+        res.redirect("/admin/discount");
+        return
+      }
+
+      if (type == "Percent" && amount > 100) {
+        req.flash("alertMessage", "Maksimal 100%");
+        req.flash("alertStatus", 'danger');
+        res.redirect("/admin/discount");
+        return
+      }
+
+      if (amount < 0) {
+        req.flash("alertMessage", "Amount tidak boleh kurang dari 0");
+        req.flash("alertStatus", 'danger');
+        res.redirect("/admin/discount");
+        return
+      }
+      
       discount.type = type;
       discount.amount = amount;
       discount.desc = desc;

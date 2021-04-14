@@ -8,11 +8,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/admin/discount" method="POST" enctype="multipart/form-data">
+      <form action="/admin/discount" method="POST">
         <div class="modal-body">
           <div class="form-group">
             <label for="name">Type</label><br>
-            <select class="form-control" name="type">
+            <select class="form-control" name="type" required>
               <option value="Potongan">Potongan</option>
               <option value="Percent">Percent</option>
             </select>
@@ -30,7 +30,7 @@
 
           <div class="form-group">
             <label for="name">Status</label><br>
-            <select class="form-control" name="status">
+            <select class="form-control" name="status" required>
               <option value="Aktif">Aktif</option>
               <option value="Tidak Aktif">Tidak Aktif</option>
             </select>
