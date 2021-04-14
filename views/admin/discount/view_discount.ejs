@@ -18,7 +18,7 @@
         <%- include('../../partials/message.ejs') %>
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Product</h1>
+        <h1 class="h3 mb-4 text-gray-800">Discount</h1>
         <!-- End Heading -->
 
         <!-- nanti di sini diisi table nya -->
@@ -64,18 +64,19 @@
 </div>
 
 <%- include('add_discount.ejs') %>
+<%- include('edit_discount.ejs') %>
 <%- include('../../partials/js.ejs') %>
 
-<!-- <script>
+<script>
   $('#dataTable').on('click', '.button-update', function () {
     let type = $(this).data('type');
     let status = $(this).data('status');
     let amount = $(this).data('amount');
     let description = $(this).data('description');
-    $('#edit-product').modal('show');
+    $('#edit-discount').modal('show');
     $('.type').val(type);
     $('.status').val(status);
     $('.amount').val(amount);
     $('.description').val(description);
   })
-</script> -->
+</script>

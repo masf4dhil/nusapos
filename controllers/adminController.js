@@ -217,6 +217,25 @@ module.exports = {
       res.redirect("/admin/product");
     }
   },
+
+  editDiscount: async (req, res) => {
+    try {
+      const { id, type, amount, desc, status } = req.body;
+      const discount = await tbDiscount.findOne({ _id : id }) 
+      discount.type = type;
+      discount.amount = amount;
+      discount.desc = desc;
+      discount.status = status;
+      await discount.save();
+      req.flash("alertMessage", "Succes Update Discount");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/discount");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/discount");
+    }
+  },
   editProduct: async (req, res) => {
    try {
     const { id , name, merk, type , status, price , description , barcode  } = req.body;
@@ -260,7 +279,7 @@ module.exports = {
       const { id } = req.params;
       const discount = await tbDiscount.findOne({_id: id});
       await discount.remove();
-      req.flash('alertMessage', 'Success Delete Product');
+      req.flash('alertMessage', 'Success Delete Discount');
       req.flash('alertStatus', 'success');
       res.redirect("/admin/discount")
     } catch(error) {
