@@ -34,7 +34,7 @@
                         <td><%= discount[i].desc %></td>
                         <td><%= discount[i].status %></td>
                         <td>
-                            <form>
+                            <form action="/admin/discount/<%= discount[i].id %>?_method=DELETE" method="POST">
                                 <a href="#" class="btn btn-warning btn-circle btn-sm button-update">
                                     <i class="fas fa-edit"></i></a>
                                 </a>

@@ -254,6 +254,22 @@ module.exports = {
     res.redirect("/admin/product");
    }
   },
+
+  deleteDiscount: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const discount = await tbDiscount.findOne({_id: id});
+      await discount.remove();
+      req.flash('alertMessage', 'Success Delete Product');
+      req.flash('alertStatus', 'success');
+      res.redirect("/admin/discount")
+    } catch(error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/discount');
+    }
+  },
+
   deleteProduct: async (req, res) => {
     try {
       const { id } = req.params;

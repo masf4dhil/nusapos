@@ -17,6 +17,7 @@ router.get("/member", adminController.viewMember);
 
 router.get("/discount", adminController.viewDiscount)
 router.post("/discount", adminController.addDiscount);
+router.delete("/discount/:id", adminController.deleteDiscount)
 
 router.get("/transaction", adminController.viewTransaction);
 
