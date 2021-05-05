@@ -2,20 +2,20 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
 const diskonSchema = new mongoose.Schema({
+  // type diskon ini enum 
   typeDiskon: {
     type: String,
   },
   amount: {
     type: Number,
   },
-  desc: {
+  description: {
     type: String,
   },
-  // ini trans id nya dapet ketika apa?
-  transId: [{
-    type: ObjectId,
-    ref: 'Trans'
-  }]
+  status: {
+    type: String,
+  },
+  
 })
 
 module.exports = mongoose.model("Diskon", diskonSchema);

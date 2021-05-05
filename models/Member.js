@@ -1,37 +1,26 @@
 const mongoose = require('mongoose');
 const  { ObjectId } = mongoose.Schema;
 const memberSchema = new mongoose.Schema({
-  transId: [{
-    type: ObjectId,
-    ref: 'Trans'
-  }],
-  No_Member: {
+  Name: {
     type: String,
-    required: true
-  },
-  NIK: {
-    type: Number,
     required: true
   },
   NoHP: {
     type: Number,
     required: true
   },
-  Instagram: {
+  username_ig: {
     type: String,
     required: true
   },
-  Nama_EKTP: {
+  identity: {
+    type: Number,
+    required: true
+  },
+  status: {
     type: String,
     required: true
   },
-  Status: {
-    type: String,
-    required: true
-  },
-
- 
-  
 })
 
 module.exports = mongoose.model("Member", memberSchema);

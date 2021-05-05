@@ -1,19 +1,23 @@
 const mongoose = require('mongoose');
 const  { ObjectId } = mongoose.Schema;
 const productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
+  typeId: {
+    type: ObjectId,
+    ref: 'Type'
   },
-  merk: {
-    type: String,
-    required: true
+  merkId: {
+    type: ObjectId,
+    ref: 'Merk'
   },
-  type: {
+  product_name: {
     type: String,
     required: true
   },
   status: {
+    type: String,
+    required: true
+  },
+  description: {
     type: String,
     required: true
   },
@@ -25,19 +29,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  description: {
-    type: String,
-    required: true
-  },
   barcode: {
     type: Number,
     required: true
   },
-  bookingId: {
-    type: ObjectId,
-    ref: 'Bookings'
-  },
-  
 })
 
 module.exports = mongoose.model("Products", productSchema);
