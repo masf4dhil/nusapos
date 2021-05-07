@@ -30,9 +30,9 @@ const productSchema = new mongoose.Schema({
     required: true
   },
   barcode: {
-    type: Number,
+    type: String,
     required: true
   },
 })
 
-module.exports = mongoose.model("Products", productSchema);
+module.exports = mongoose.model("Product", productSchema);

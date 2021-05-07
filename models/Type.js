@@ -7,4 +7,4 @@ const typeSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model("type", typeSchema);
+module.exports = mongoose.model("Type", typeSchema);

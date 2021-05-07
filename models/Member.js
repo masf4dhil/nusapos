@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 const  { ObjectId } = mongoose.Schema;
 const memberSchema = new mongoose.Schema({
-  Name: {
+  no_member: {
+    type: String ,
+    required: true
+  },
+  name: {
     type: String,
     required: true
   },
-  NoHP: {
+  no_hp: {
     type: Number,
     required: true
   },
@@ -18,7 +22,7 @@ const memberSchema = new mongoose.Schema({
     required: true
   },
   status: {
-    type: String,
+    type: Number,
     required: true
   },
 })

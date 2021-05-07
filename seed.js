@@ -10,16 +10,18 @@ seeder.connect('mongodb://localhost:27017/nusa', {
 
   // Load Mongoose models
   seeder.loadModels([
-    './models/Users',
+    './models/User',
     './models/Member',
-    './models/Products',
-    './models/Bookings',
-    './models/Trans',
-    './models/Diskon',
+    './models/Merk',
+    './models/Product',
+    './models/Transaction',
+    './models/TransactionDetail',
+    './models/Discount',
+    './models/Type',
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['Users' , 'Products' , 'Bookings' , 'Trans','Member', 'Diskon' ], function () {
+  seeder.clearModels(['User' , 'Member', 'Merk','Product' , 'Transaction', 'Discount',"TransactionDetail", 'Type' ], function () {
 
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
@@ -31,12 +33,13 @@ seeder.connect('mongodb://localhost:27017/nusa', {
 
 var data = [
   {
-    'model': 'Users',
+    'model': 'User',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903345'),
-        username: 'admin',
+        name: 'admin',
         password: 'rahasia',
+        status: 'active',
       },
     ]
   },
@@ -45,106 +48,112 @@ var data = [
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315'),
-        NIK: 21312312313123,
-        NoHP: 0893733342323,
-        Instagram: '@alfatayah',
-        Nama_EKTP: 'fadhil',
-        Status: 1,
-        No_Member: 234423423,
-        transId : [
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445') },
-        ],
+        no_member: "NK000326",
+        name: 'fadhil',
+        no_hp: 0893733342323,
+        username_ig: '@alfatayah',
+        identity: 21312312313123,
+        status: 1,
       },
     ]
   },
   {
-    'model': 'Products',
+    'model': 'Merk',
+    'documents': [
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc904315'),
+        name: 'Canon'
+      },
+      {
+        _id: mongoose.Types.ObjectId('2e96cbe292b97300fc904315'),
+        name: 'Nikon'
+      }
+    ]
+  },
+  {
+    'model': 'Type',
+    'documents': [
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe392b97300fc904315'),
+        name: 'Mirrorless'
+      },
+      {
+        _id: mongoose.Types.ObjectId('2e96dbe292b97300fc904315'),
+        name: 'Dslr'
+      }
+    ]
+  },
+  {
+    'model': 'Product',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01'),
-        name: 'XD',
-        merk: 'cannon',
-        type: 'mirror less',
-        status: 'avalaible', 
+        typeId: mongoose.Types.ObjectId('5e96cbe392b97300fc904315'),
+        merkId: mongoose.Types.ObjectId('5e96cbe292b97300fc904315'),
+        product_name: 'Canon D100',
+        status:"Avalaible",
+        description: 'barang ada',
         image:'images/1.PNG',
         price: 12000,
-        description: 'barang ada',
         barcode: '89981115',
-        bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
       },
       {
-        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903445'),
-        name: 'fujitsu',
-        merk: 'nikon',
-        type: 'mirror less',
-        status: 'not avalaible', 
-        image:'images/2.PNG',
+        _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01'),
+        typeId: mongoose.Types.ObjectId('5e96cbe392b97300fc904315'),
+        merkId: mongoose.Types.ObjectId('5e96cbe292b97300fc904315'),
+        product_name: 'Canon 101',
+        status:"Avalaible",
+        description: 'barang ada',
+        image:'images/1.PNG',
         price: 13000,
-        description: 'barang ada',
-        barcode: '89981111',
-        bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
-      },
-      {
-        _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445'),
-        name: 'dummy',
-        merk: 'japan',
-        type: 'mirror less',
-        status: 'avalaible', 
-        image:'images/3.PNG',
-        price: 11000,
-        description: 'barang ada',
-        barcode: '89981111',
-        bookingId: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
+        barcode: '89911115',
       },
     ]
   },
   {
-    'model': 'Bookings',
-    'documents': [
-      {
-        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc901445'),
-        productId:[{ _id: mongoose.Types.ObjectId('1e96cbe292b97300fc903445') }],
-      },
-
-    ]
-  },
-  {
-    'model': 'Diskon',
+    'model': 'Discount',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d'),
-        typeDiskon:"",
-        amount: 0,
-        desc:"",
-        transId: [
-
-        ],
+        typeDiskon:"Diskon",
+        amount: 1000,
+        desc:"diskon hit ramadhan",
+        status: "Not Avalaible"
       },
     ]
   },
   {
-    'model': 'Trans',
+    'model': 'Transaction',
     'documents': [  
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445'),
-        productId: [
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903445') },
-        ],
         memberId:{ _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315') },
-        time: '11.30 PM',
-        fdate: '11-1-2021',
-        tdate: '12-1-2021',
-        days: 1,
-        typeDiskon: ['Potongan' , 'Persen'],
-        diskon:[1200, 1200],
-        jaminan: 'KK',
-        subtotal: 11111,
-        totalDiskon: 11111,
-        total: 1111,
-        desc:['as' , 'Perseasn'],
+        total_product: 2,
+        total_price : 100000,
+        total_discount : 5000,
+        start_date: '11-1-2021',
+        end_date: '12-1-2021',
+        invoice: "INV0001",
+        status: "DONE",
+        note: "transakasi pertama bos",
+      },
+    ]
+  },
+  {
+    'model': 'TransactionDetail',
+    'documents': [  
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101245'),
+        productId: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+        transaction_Id: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445') },
+        discount_Id: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d') },
+        product_name: "Canon D100",
+        price: 5000,
+        note: "transakasi pertama ya",
       },
     ]
   },
 
 ]
+
+

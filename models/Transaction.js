@@ -31,7 +31,7 @@ const transactionSchema = new mongoose.Schema({
     required: true
   },
   status: {
-    type: Number,
+    type: String,
     required: true
   },
   note: {

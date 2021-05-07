@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
 const  { ObjectId } = mongoose.Schema;
 const transactionDetailSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  product_Id: {
+  product_Id:{
     type: ObjectId,
     ref: 'Product'
-  },
+  } ,
   transaction_Id: {
     type: ObjectId,
     ref: 'Transaction'
@@ -18,8 +14,15 @@ const transactionDetailSchema = new mongoose.Schema({
     ref: 'Discount'
   },
   product_name: {
-    type: ObjectId,
-    ref: 'Discount'
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  note: {
+    type: String,
   },
 })
 

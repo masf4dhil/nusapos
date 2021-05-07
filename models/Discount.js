@@ -1,21 +1,24 @@
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
-const diskonSchema = new mongoose.Schema({
-  // type diskon ini enum 
+const discountSchema = new mongoose.Schema({
   typeDiskon: {
     type: String,
+    enum : ['Diskon','Potongan'],
+    default: 'Diskon'
   },
   amount: {
     type: Number,
+    required: true,
   },
   description: {
     type: String,
   },
   status: {
     type: String,
+    required: true
   },
   
 })
 
-module.exports = mongoose.model("Diskon", diskonSchema);
+module.exports = mongoose.model("Discount", discountSchema);

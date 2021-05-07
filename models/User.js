@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   },
 })
 
-usersSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next) {
   const user = this;
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
