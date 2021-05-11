@@ -69,105 +69,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div>
-                    <form action="/admin/dashboard/addTrans" method="POST" >
-                      <div class="container">
-                        <div class="row">
-                          <div class="col-0">
-                            <button class="btn btn-primary" type="submit"">
-                              <i class="fas fa-plus"></i>
-                            </button>
-                          </div>
-
-                          <div class="col">
-                            <div class="form-group">
-                              <select class="form-control " name ="select2" id="select2" required>
-                                <option selected disabled value="">Member</option>
-                                <% for(var i = 0; i < member.length; i++){ %>
-                                <option value=<%= member[i]._id %> ><%= member[i].Nama_EKTP %></option>
-                         
-                                <% } %>
-                              </select>
-                            </div>
-                          </div>
-
-                          <div class="col">
-                            <div class="form-group">
-                              <select class="form-control" name="jaminan" required>
-                                <option selected disabled value="">Jaminan</option>
-                                <option value="KTP">KTP / Kartu Pelajar</option>
-                                <option value="kartukeluarga">Kartu Keluarga</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <input class="form-control " type="text" placeholder="<%= moment().format('DD-MMM-YY') %>" id="fdate" name="fdate" required >
-                          </div>
-                          
-                          <div class="col">
-                            <input class="form-control " type="text"  placeholder="<%= moment().format('DD-MMM-YY') %>" id="tdate" name="tdate" required >
-                          </div>
-
-                          <!-- <div style="width: 6rem;" > -->
-                            <input class="form-control"  name="time" value="<%= moment().format('LT') %>" type="hidden"  />
-                          <!-- </div> -->
-                        </div>
-                      </div>
-                      <% var subtotal = 0;  %>
-                      <% var idDiskon = 1;  %>
-                      <% for(var i = 0; i < booking.length; i++){ %>
-                        <% for(var a = 0; a < booking[i].productId.length; a++){ %>
-                        <input class="form-control" type="hidden" value=<%= subtotal += booking[i].productId[a].price %> >
-                        <input type="hidden"  name="productId"  value=<%= booking[i].productId[a]._id %>  >
-                        <div class="card shadow mb-4">
-                          <div class="card-header">
-                            <div class="row justify-content-between">
-                              <div class="col-4">
-                                <h6 class="m-0 font-weight-bold text-primary"><%= booking[i].productId[a].name %></h6>
-                              </div>
-                              <div class="col-4">
-                                <input class="form-control" type="number" id="price" name="price" value= <%= booking[i].productId[a].price %> >
-                               
-                              </div>
-                            </div> 
-                          </div>
-
-                          <div class="card-body">
-                            <div class="row">
-                              <div class="col">
-                                <div class="form-group" >
-                                  <select class="form-control" name="typeDiskon" id="typeDiskon" >
-                                    <option selected disabled value="">Type Diskon</option>
-                                    <option value="Persen">Persen</option>
-                                    <option value="Potongan">Potongan</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="col">
-                                <input type="number" class="form-control" onkeyup="addNumbers(this)" name="everyDiskon" id="diskon<%= idDiskon + i  %>">
-                                <!-- ini buat dapetin value jumlah array nya -->
-                                <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  booking[i].productId.length  %> >
-                              </div>
-                              <div class="col">
-                              </div>
-                            </div>
-                            <input class="form-control" type="text"  placeholder="Description" name="desc" required>
-                          </div>
-                        </div>
-                        <% } %>
-                       <% } %>
-                      
-
-                       <div style="width: 18rem;" class="card shadow mb-4">
-                       
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item"> Subtotal :  <input  class="form-control" value=" <%= subtotal %>" type="text" id="subtotal2" name="subtotal2" readonly="true" /></li>
-                          <li class="list-group-item"> Total Rent :  <input class="form-control"  type="number" name="days" placeholder="Total rent" id="days" readonly="true" /></li>
-                            <li class="list-group-item">Diskon     :   <input class="form-control"  type="text" id="totalDiskon" name="totalDiskon" readonly="true" /> </li>
-                          <li class="list-group-item">Total     : <input class="form-control"  type="text" id="totalAll" name="totalAll" readonly="true" /> </li>
-                        </ul>
-                      </div>
-
-                    </form>
+                  <!-- form add trans dimasukin ke sini : no 1 -->
                   </div>
               
                 </div>
@@ -186,7 +88,7 @@
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs">
-                              <%= product[i].name %> </div>
+                              <%= product[i].product_name %> </div>
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-0">
                               <%= product[i].status %></div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <%= product[i].price %></div>
