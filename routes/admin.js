@@ -21,6 +21,7 @@ router.get("/transaction", adminController.viewTransaction);
 
 // router.get("/barcode", adminController.viewBarcode);
 router.get("/product", productController.viewProduct);
+
 router.post("/product", uploadSingle, productController.addProduct);
 router.put("/product", uploadSingle, productController.editProduct);
 router.delete('/product/:id', productController.deleteProduct);

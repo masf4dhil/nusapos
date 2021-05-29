@@ -2,12 +2,13 @@ const bycrypt = require("bcryptjs");
 const fs = require('fs-extra');
 const path = require('path');
 const users = require('../models/User');
-const tbProduct = require('../models/Product');
+const tbProduct = require('../models/product');
 const tbTrans = require('../models/Transaction');
 const tbMember = require('../models/Member');
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
+  
   viewSignIn: async (req, res) => {
     try {
       const alertMessage = req.flash('alertMessage');

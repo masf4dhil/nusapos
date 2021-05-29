@@ -5,6 +5,10 @@ const typeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  product_id:[{
+    type: ObjectId,
+    ref: "product"
+  }]
 })
 
-module.exports = mongoose.model("Type", typeSchema);
+module.exports = mongoose.model("type", typeSchema);

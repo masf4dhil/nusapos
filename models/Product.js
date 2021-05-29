@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const  { ObjectId } = mongoose.Schema;
+
 const productSchema = new mongoose.Schema({
   typeId: {
     type: ObjectId,
-    ref: 'Type'
+    ref: 'type'
   },
   merkId: {
     type: ObjectId,
-    ref: 'Merk'
+    ref: 'merk'
   },
   product_name: {
     type: String,
@@ -35,4 +36,4 @@ const productSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("product", productSchema);

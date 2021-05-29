@@ -12,17 +12,16 @@ seeder.connect('mongodb://localhost:27017/nusa', {
   seeder.loadModels([
     './models/User',
     './models/Member',
-    './models/Merk',
-    './models/Product',
+    './models/merk',
+    './models/product',
     './models/Transaction',
     './models/TransactionDetail',
     './models/Discount',
-    './models/Type',
+    './models/type',
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['User' , 'Member', 'Merk','Product' , 'Transaction', 'Discount',"TransactionDetail", 'Type' ], function () {
-
+  seeder.clearModels(['User' , 'Member', 'merk','product' , 'Transaction', 'Discount',"TransactionDetail", 'type' ], function () {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
       seeder.disconnect();
@@ -58,38 +57,38 @@ var data = [
     ]
   },
   {
-    'model': 'Merk',
+    'model': 'merk',
     'documents': [
       {
-        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc904315'),
+        _id: mongoose.Types.ObjectId('1e96cbe292b97300fc904315'),
         name: 'Canon'
       },
       {
-        _id: mongoose.Types.ObjectId('2e96cbe292b97300fc904315'),
+        _id: mongoose.Types.ObjectId('3e96cbe292b97300fc904315'),
         name: 'Nikon'
       }
     ]
   },
   {
-    'model': 'Type',
+    'model': 'type',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe392b97300fc904315'),
-        name: 'Mirrorless'
+        name: 'Mirrorless',
       },
       {
         _id: mongoose.Types.ObjectId('2e96dbe292b97300fc904315'),
-        name: 'Dslr'
+        name: 'Dslr',
       }
     ]
   },
   {
-    'model': 'Product',
+    'model': 'product',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01'),
-        typeId: mongoose.Types.ObjectId('5e96cbe392b97300fc904315'),
-        merkId: mongoose.Types.ObjectId('5e96cbe292b97300fc904315'),
+        typeId: mongoose.Types.ObjectId('2e96dbe292b97300fc904315'),
+        merkId: mongoose.Types.ObjectId('1e96cbe292b97300fc904315'),
         product_name: 'Canon D100',
         status:"Avalaible",
         description: 'barang ada',
@@ -100,7 +99,7 @@ var data = [
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01'),
         typeId: mongoose.Types.ObjectId('5e96cbe392b97300fc904315'),
-        merkId: mongoose.Types.ObjectId('5e96cbe292b97300fc904315'),
+        merkId: mongoose.Types.ObjectId('3e96cbe292b97300fc904315'),
         product_name: 'Canon 101',
         status:"Avalaible",
         description: 'barang ada',

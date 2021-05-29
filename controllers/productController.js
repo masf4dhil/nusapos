@@ -2,17 +2,20 @@ const bycrypt = require("bcryptjs");
 const fs = require('fs-extra');
 const path = require('path');
 const users = require('../models/User');
-const tbProduct = require('../models/Product');
+const tbProduct = require('../models/product');
 const tbTrans = require('../models/Transaction');
 const tbMember = require('../models/Member');
+const tbtype = require('../models/type');
+const tbmerk = require('../models/merk');
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   viewProduct: async (req, res) => {
     try {
       const product = await tbProduct.find()
-      .populate({path : 'typeId', select : 'name'})
-      // untuk alert message dia call component dari partials/message.ejs
+      // .populate({ path: 'typeId', select: 'id name' })
+      .populate({ path: 'merkId', select: 'id name' })
+      console.log("data product " , product);
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus , user: req.session.user };

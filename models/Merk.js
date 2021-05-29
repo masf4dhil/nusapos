@@ -5,6 +5,10 @@ const merkSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  product_id:[{
+    type: ObjectId,
+    ref: "product"
+  }]
 })
 
-module.exports = mongoose.model("Merk", merkSchema);
+module.exports = mongoose.model("merk", merkSchema);
