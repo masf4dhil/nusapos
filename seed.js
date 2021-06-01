@@ -61,11 +61,17 @@ var data = [
     'documents': [
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97300fc904315'),
-        name: 'Canon'
+        name: 'Canon',
+        product_Id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+        ]
       },
       {
         _id: mongoose.Types.ObjectId('3e96cbe292b97300fc904315'),
-        name: 'Nikon'
+        name: 'Nikon',
+        product_Id: [
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01') },
+        ]
       }
     ]
   },
@@ -75,11 +81,18 @@ var data = [
       {
         _id: mongoose.Types.ObjectId('5e96cbe392b97300fc904315'),
         name: 'Mirrorless',
+        product_Id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+        ]
       },
       {
         _id: mongoose.Types.ObjectId('2e96dbe292b97300fc904315'),
         name: 'Dslr',
-      }
+        product_Id: [
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01') },
+        ]
+      },
+      
     ]
   },
   {

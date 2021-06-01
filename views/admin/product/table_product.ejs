@@ -16,10 +16,10 @@
             <th>Merk</th>
             <th>Type</th>
             <th>Status</th>
-            <th>Image</th>
             <th>Price</th>
             <th>Description</th>
             <th>Barcode</th>
+            <th>Image</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -28,9 +28,8 @@
           <tr>
             <td><%= i + 1 %></td>
             <td><%= product[i].product_name %></td>
-            <td><%= product[i].merk %></td>
-          
-            <td><%= product[i].type %></td>
+            <td><%= product[i].merkId.name %></td>
+            <td><%= product[i].typeId.name %></td>
             <td><%= product[i].status %></td>
             <td><%= product[i].price %></td>
             <td><%= product[i].description %></td>
@@ -41,12 +40,12 @@
             <td>
               <form action="/admin/product/<%= product[i].id %>?_method=DELETE" method="POST">
                 <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                data-id="<%= product[i].id %>" data-name="<%= product[i].name %>"  data-merk="<%= product[i].merk %>"  data-type="<%= product[i].type %>"
+                data-id="<%= product[i].id %>" data-name="<%= product[i].product_name %>"  data-merk="<%= product[i].merk %>"  data-type="<%= product[i].type %>"
                   data-status="<%= product[i].status %>"  data-price="<%= product[i].price %>" data-description="<%= product[i].description %>"
                   data-barcode="<%= product[i].barcode %>" >
                   <i class="fas fa-edit"></i></a>
                   <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                  data-id="<%= product[i].id %>" data-name="<%= product[i].name %>"  data-merk="<%= product[i].merk %>"  data-type="<%= product[i].type %>"
+                  data-id="<%= product[i].id %>" data-name="<%= product[i].product_name %>"  data-merk="<%= product[i].merk %>"  data-type="<%= product[i].type %>"
                     data-status="<%= product[i].status %>"  data-price="<%= product[i].price %>" data-description="<%= product[i].description %>"
                     data-barcode="<%= product[i].barcode %>" >
                     <i class="fas fa-envelope"></i></a>

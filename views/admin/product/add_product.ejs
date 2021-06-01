@@ -12,24 +12,26 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="name">Name </label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Name Product" required />
+            <input type="text" class="form-control" name="product_name" placeholder="Enter Name Product" required />
           </div>
           <div class="form-group">
             <label for="name">Merk</label>
-            <input type="text" class="form-control" name="merk" placeholder="Enter Merk"
-              required />
+            <select class="form-control" name="merkId">
+              <option value="">---- Merk ----</option>
+               <% for (let i = 0; i< product.length; i++){ %>
+                <option value=<%= product[i].merkId.id %> > <%= product[i].merkId.name %>  </option>
+               <% } %>  
+            </select>
           </div>
           <div class="form-group">
             <label for="name">Type</label>
-            <input type="text" class="form-control" name="type" placeholder="Enter Type"
-              required />
+            <select class="form-control" name="typeId">
+              <option value="">---- Type ----</option>
+               <% for (let i = 0; i< product.length; i++){ %>
+                <option value=<%= product[i].typeId.id %> > <%= product[i].typeId.name %>  </option>
+               <% } %>  
+            </select>
           </div>
-
-          <div class="form-group">
-            <label for="name">Status</label>
-            <input type="hidden" class="form-control" name="status" value="available" placeholder="Enter Status" />
-          </div>
-
           <div class="form-group">
             <label for="name">Image</label>
             <input type="file" class="form-control" name="image" required />
@@ -54,6 +56,7 @@
           </div>
         </div>
         <div class="modal-footer">
+          <input type="hidden" class="form-control" name="status" value="available" />
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
