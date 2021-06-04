@@ -18,7 +18,6 @@ module.exports = {
       const product = await tbProduct.find()
       .populate({ path: 'typeId', select: 'id name' })
       .populate({ path: 'merkId', select: 'id name' })
-      console.log("product data " , product);
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
@@ -36,17 +35,12 @@ module.exports = {
   },
 
   addProduct: async (req, res) => {
-    const item =  { product_name, typeId, merkId, status, price , description , barcode  } = req.body;
-    console.log("item " , item);
-    console.log("req.file " , req.file);
     try {
       const { product_name, typeId, merkId, status, price , description , barcode  } = req.body;
       if(req.file){
         const image = `images/${req.file.filename}`
         const dataType = await tbType.findOne({_id: typeId});
-        console.log("dataType " , dataType);
         const dataMerk = await tbMerk.findOne({_id : merkId});
-        console.log("dataMerk " , dataMerk);
         const  newItem = {
           typeId,
           merkId,
@@ -57,12 +51,10 @@ module.exports = {
           price ,
           barcode  
         }
-        console.log("newItem " , newItem);
         const dataItem = await tbProduct.create(newItem);
-        console.log("dataitem ID " , dataItem._id);
-        dataType.product_id.push({product_id : dataItem._id})
+        dataType.product_id.push({_id : dataItem._id})
         await dataType.save();
-        dataMerk.product_id.push({product_id : dataItem._id})
+        dataMerk.product_id.push({_id : dataItem._id})
         await dataMerk.save();
         req.flash("alertMessage", "Succes Add Product");
         req.flash("alertStatus", "success");
