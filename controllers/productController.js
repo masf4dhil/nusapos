@@ -73,32 +73,29 @@ module.exports = {
   },
 
   editProduct: async (req, res) => {
+    const { id, name, merkId, typeId , status, price , description , barcode  } = req.body;
     try {
-      const { name, merkId, typeId , status, price , description , barcode  } = req.body;
       const product = await tbProduct.findOne({ _id : id})
       .populate({ path: 'merkId', select: 'id name'})
       .populate({ path: 'typeId', select: 'id name'})
       if(req.file == undefined){
-        product.merkId = merkId;
+        console.log("masuk ke validation undefined " , product);
         product.typeId = typeId;
-        product.name = name;
-        product.merk = merk;
-        product.type = type;
+        product.merkId = merkId;
+        product.product_name = name;
         product.status = status;
-        product.price = price;
         product.description = description;
+        product.price = price;
         product.barcode = barcode;
         await product.save();
         req.flash("alertMessage", "Succes Update Product");
         req.flash("alertStatus", "success");
         res.redirect("/admin/product");
-      }else {
+      } else {
         await fs.unlink(path.join(`public/${product.image}`));
-        product.merkId = merkId;
         product.typeId = typeId;
-        product.name = name;
-        product.merk = merk;
-        product.type = type;
+        product.merkId = merkId;
+        product.product_name = name;
         product.status = status;
         product.image = `images/${req.file.filename}`
         product.price = price;
