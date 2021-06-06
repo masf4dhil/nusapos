@@ -39,16 +39,13 @@
             </td>
             <td>
               <form action="/admin/product/<%= product[i].id %>?_method=DELETE" method="POST">
+
                 <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                data-id="<%= product[i].id %>" data-name="<%= product[i].product_name %>"  data-merk="<%= product[i].merk %>"  data-type="<%= product[i].type %>"
+                data-id="<%= product[i].id %>" data-name="<%= product[i].product_name %>"  data-merk="<%= product[i].merkId.id %>"  data-type="<%= product[i].typeId.id %>"
                   data-status="<%= product[i].status %>"  data-price="<%= product[i].price %>" data-description="<%= product[i].description %>"
                   data-barcode="<%= product[i].barcode %>" >
                   <i class="fas fa-edit"></i></a>
-                  <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                  data-id="<%= product[i].id %>" data-name="<%= product[i].product_name %>"  data-merk="<%= product[i].merk %>"  data-type="<%= product[i].type %>"
-                    data-status="<%= product[i].status %>"  data-price="<%= product[i].price %>" data-description="<%= product[i].description %>"
-                    data-barcode="<%= product[i].barcode %>" >
-                    <i class="fas fa-envelope"></i></a>
+
                 <button type="submit" class="btn btn-danger btn-circle btn-sm">
                   <i class="fas fa-trash"></i></button>
               </form>

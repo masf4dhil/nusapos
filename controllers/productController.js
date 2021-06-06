@@ -18,13 +18,16 @@ module.exports = {
       const product = await tbProduct.find()
       .populate({ path: 'typeId', select: 'id name' })
       .populate({ path: 'merkId', select: 'id name' })
-      console.log("product data " , product);
+      const merk = await tbMerk.find();
+      const type = await tbType.find();
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
       res.render('admin/product/view_product', {
         title: "Nusa | Product",
         user: req.session.user, 
+        merk,
+        type,
         product,
         alert,
       });
@@ -36,17 +39,12 @@ module.exports = {
   },
 
   addProduct: async (req, res) => {
-    const item =  { product_name, typeId, merkId, status, price , description , barcode  } = req.body;
-    console.log("item " , item);
-    console.log("req.file " , req.file);
     try {
       const { product_name, typeId, merkId, status, price , description , barcode  } = req.body;
       if(req.file){
         const image = `images/${req.file.filename}`
         const dataType = await tbType.findOne({_id: typeId});
-        console.log("dataType " , dataType);
         const dataMerk = await tbMerk.findOne({_id : merkId});
-        console.log("dataMerk " , dataMerk);
         const  newItem = {
           typeId,
           merkId,
@@ -57,9 +55,7 @@ module.exports = {
           price ,
           barcode  
         }
-        console.log("newItem " , newItem);
         const dataItem = await tbProduct.create(newItem);
-        console.log("dataitem ID " , dataItem._id);
         dataType.product_id.push({product_id : dataItem._id})
         await dataType.save();
         dataMerk.product_id.push({product_id : dataItem._id})
@@ -78,9 +74,13 @@ module.exports = {
 
   editProduct: async (req, res) => {
     try {
-     const { id , name, merk, type , status, price , description , barcode  } = req.body;
-      const product = await tbProduct.findOne({ _id : id});
+      const { name, merkId, typeId , status, price , description , barcode  } = req.body;
+      const product = await tbProduct.findOne({ _id : id})
+      .populate({ path: 'merkId', select: 'id name'})
+      .populate({ path: 'typeId', select: 'id name'})
       if(req.file == undefined){
+        product.merkId = merkId;
+        product.typeId = typeId;
         product.name = name;
         product.merk = merk;
         product.type = type;
@@ -94,6 +94,8 @@ module.exports = {
         res.redirect("/admin/product");
       }else {
         await fs.unlink(path.join(`public/${product.image}`));
+        product.merkId = merkId;
+        product.typeId = typeId;
         product.name = name;
         product.merk = merk;
         product.type = type;

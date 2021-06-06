@@ -9,21 +9,32 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/admin/product?_method=PUT" method="POST" enctype="multipart/form-data">
+      <form action="/admin/product/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control name" name="name" placeholder="Enter name product" required>
           </div>
+          <!-- TODO: Merk display name -->
           <div class="form-group">
-            <label for="name"> merk</label>
-            <input type="text" class="form-control merk" name="merk"
-              placeholder="Enter merk" required>
+            <label for="name">Merk</label>
+            <select class="form-control merk" name="merkId">
+              <% for(let i = 0; i< merk.length; i++){ %>
+              <option value="<%= merk[i].id %>"><%= merk[i].name %></option>
+              <%}%>
+            </select>
           </div>
           <div class="form-group">
             <label for="name">Type</label>
-            <input type="text" class="form-control type" name="type" placeholder="Enter type" required>
+            <select class="form-control type" name="typeId">
+              <% for(let i = 0; i< type.length; i++){ %>
+              <option value="<%= type[i].id %>"><%= type[i].name %></option>
+              <%}%>
+            </select>
+           
           </div>
+        
+
           <div class="form-group">
             <label for="name">Status</label>
             <input type="text" class="form-control status" name="status" placeholder="Enter status" required>
