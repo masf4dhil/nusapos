@@ -56,9 +56,9 @@ module.exports = {
           barcode  
         }
         const dataItem = await tbProduct.create(newItem);
-        dataType.product_id.push({product_id : dataItem._id})
+        dataType.product_id.push({_id : dataItem._id})
         await dataType.save();
-        dataMerk.product_id.push({product_id : dataItem._id})
+        dataMerk.product_id.push({_id : dataItem._id})
         await dataMerk.save();
         req.flash("alertMessage", "Succes Add Product");
         req.flash("alertStatus", "success");
