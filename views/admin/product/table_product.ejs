@@ -20,6 +20,7 @@
             <th>Description</th>
             <th>Barcode</th>
             <th>Image</th>
+            <th>Barcode pic</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -38,22 +39,41 @@
               <img src="http://localhost:3000/<%- product[i].image %> " alt="image" width="70px">
             </td>
             <td>
+              <img id="barcode<%= i + 1 %>"  >
+            </td>
+            <td>
               <form action="/admin/product/<%= product[i].id %>?_method=DELETE" method="POST">
-
                 <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update"
                 data-id="<%= product[i].id %>" data-name="<%= product[i].product_name %>"  data-merk="<%= product[i].merkId.id %>"  data-type="<%= product[i].typeId.id %>"
                   data-status="<%= product[i].status %>"  data-price="<%= product[i].price %>" data-description="<%= product[i].description %>"
                   data-barcode="<%= product[i].barcode %>"   data-image="<%= product[i].image %>">
                   <i class="fas fa-edit"></i></a>
-
                 <button type="submit" class="btn btn-danger btn-circle btn-sm">
                   <i class="fas fa-trash"></i></button>
               </form>
             </td>
           </tr>
+
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.3/dist/JsBarcode.all.min.js"></script>
+          <script type="text/javascript">
+            function generateBarcode() {
+              var barcodeValue  = "<%= product[i].barcode %>" ;
+              console.log("barcode value " , barcodeValue);
+              JsBarcode("#barcode<%= i + 1 %>", barcodeValue, {
+                format: 'code128',
+                displayValue: true,
+                lineColor: "#24292e",
+                width: 2,
+                height: 40,
+                fontSize: 20
+              });
+            }
+            generateBarcode();
+          </script>
           <% }%>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
