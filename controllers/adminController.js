@@ -103,26 +103,7 @@ module.exports = {
     }
   },
 
-  viewTransaction: async (req, res) => {
-    try {
-      const trans = await tbTrans.find()
-      .populate({ path: 'memberId ', select: 'Nama_EKTP' })
-      .populate({ path: 'productId ', select: 'name' })
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/transaction/view_transaction', {
-        title: "Nusa | Transaction",
-        user: req.session.user, 
-        trans,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/transaction");
-    }
-  },
+  
 
 
 

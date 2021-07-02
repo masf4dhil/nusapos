@@ -6,11 +6,11 @@ const transactionSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'Member'
   },
-  total_product: {
+  subtotal: {
     type: Number,
     required: true
   },
-  total_price: {
+  total: {
     type: Number,
     required: true
   },
@@ -34,8 +34,16 @@ const transactionSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  guarantee: {
+    type: String,
+    required: true,
+  },
   note: {
     type: String,
+  },
+  transDetail: {
+    type: ObjectId,
+    ref: 'TransactionDetail'
   },
 })
 

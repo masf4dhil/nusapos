@@ -107,7 +107,7 @@ var data = [
         description: 'barang ada',
         image:'images/1.PNG',
         price: 12000,
-        barcode: '89981115',
+        barcode: 'BR12345',
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01'),
@@ -118,7 +118,7 @@ var data = [
         description: 'barang ada',
         image:'images/1.PNG',
         price: 13000,
-        barcode: '89911115',
+        barcode: 'BR23463',
       },
     ]
   },
@@ -132,6 +132,13 @@ var data = [
         desc:"diskon hit ramadhan",
         status: "Not Avalaible"
       },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc92144d'),
+        typeDiskon:"Diskon",
+        amount: 2000,
+        desc:"diskon hit puasa lah",
+        status: "Not Avalaible"
+      },
     ]
   },
   {
@@ -139,15 +146,17 @@ var data = [
     'documents': [  
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445'),
-        memberId:{ _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315') },
-        total_product: 2,
-        total_price : 100000,
-        total_discount : 5000,
+        member_Id:{ _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903315') },
+        subtotal: 50000,
+        total : 40000,
+        total_discount : 10000,
         start_date: '11-1-2021',
         end_date: '12-1-2021',
         invoice: "INV0001",
         status: "DONE",
+        guarantee: "KTP", 
         note: "transakasi pertama bos",
+        transDetail: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101245') },
       },
     ]
   },
@@ -156,13 +165,23 @@ var data = [
     'documents': [  
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101245'),
-        productId: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+        product_Id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01') },
+        ],
         transaction_Id: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445') },
-        discount_Id: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d') },
+        discount_Id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc92144d') },
+
+        ] ,
+        
         product_name: "Canon D100",
         price: 5000,
         note: "transakasi pertama ya",
       },
+
+      
     ]
   },
 
