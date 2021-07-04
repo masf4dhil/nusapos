@@ -7,6 +7,7 @@ const tbTrans = require('../models/Transaction');
 const tbMember = require('../models/Member');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
+const tbdiscount = require('../models/discount');
 const { v4: uuidv4 } = require('uuid');
 var mongoose = require('mongoose');
 // var _id = mongoose.Types.ObjectId();

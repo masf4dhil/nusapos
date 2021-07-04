@@ -36,8 +36,11 @@
             <td>
               <a href="/admin/transaction/<%= trans[i].transDetail %>  " class="btn btn-success btn-circle btn-sm button-update">
                 <i class="fas fa-eye"></i></a>
+              <a href="/admin/transaction/print/<%= trans[i].transDetail %>  "
+                class="btn btn-success btn-circle btn-sm button-update">
+                <i class="fas fa-print"></i></a>
             </td>
-          </tr>
+            </tr>
           <% }%>
         </tbody>
       </table>

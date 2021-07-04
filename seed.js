@@ -16,12 +16,12 @@ seeder.connect('mongodb://localhost:27017/nusa', {
     './models/product',
     './models/Transaction',
     './models/TransactionDetail',
-    './models/Discount',
+    './models/discount',
     './models/type',
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['User' , 'Member', 'merk','product' , 'Transaction', 'Discount',"TransactionDetail", 'type' ], function () {
+  seeder.clearModels(['User' , 'Member', 'merk','product' , 'Transaction', 'TransactionDetail', 'discount', 'type' ], function () {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
       seeder.disconnect();
@@ -123,7 +123,7 @@ var data = [
     ]
   },
   {
-    'model': 'Discount',
+    'model': 'discount',
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d'),
@@ -133,7 +133,7 @@ var data = [
         status: "Not Avalaible"
       },
       {
-        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc92144d'),
+        _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242'),
         typeDiskon:"Diskon",
         amount: 2000,
         desc:"diskon hit puasa lah",
@@ -169,13 +169,11 @@ var data = [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
           { _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01') },
         ],
-        transaction_Id: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445') },
-        discount_Id: [
+        discountId: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d') },
-          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc92144d') },
-
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242') },
         ] ,
-        
+        transaction_Id: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445') },
         product_name: "Canon D100",
         price: 5000,
         note: "transakasi pertama ya",

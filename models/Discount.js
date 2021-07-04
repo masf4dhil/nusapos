@@ -4,8 +4,9 @@ const { ObjectId } = mongoose.Schema;
 const discountSchema = new mongoose.Schema({
   typeDiskon: {
     type: String,
-    enum : ['Diskon','Potongan'],
-    default: 'Diskon'
+    required: true,
+    // enum : ['Diskon','Potongan'],
+    // default: 'Diskon'
   },
   amount: {
     type: Number,
@@ -21,4 +22,4 @@ const discountSchema = new mongoose.Schema({
   
 })
 
-module.exports = mongoose.model("Discount", discountSchema);
+module.exports = mongoose.model("discount", discountSchema);

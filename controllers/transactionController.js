@@ -37,25 +37,45 @@ module.exports = {
 
   showDetailTransaction: async (req, res) => {
     const { id } = req.params;
-    console.log("trigger id " , id);
     try {
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus };
       const TransDetail = await tbTransDetail.findOne({ _id: id })
-      // .populate({ path: 'product_Id ', select: 'product_name price' })
-        .populate("product_Id")
-        // .populate("discount_Id");
-      // .populate("discount_Id");
+      .populate("transaction_Id")
+      .populate("product_Id")
+      .populate("discountId");
       res.render("admin/transaction/show_detail_transaction", {
         title: "Staycation | Detail Transaction",
         user: req.session.user,
         TransDetail,
         alert
       });
-      console.log("transdetail " , TransDetail);
     } catch (error) {
+      console.log("error  " , error);
       res.redirect(`/admin/transaction`);
+    }
+  },
+
+  showPrintTransaction: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      const TransDetail = await tbTransDetail.findOne({ _id: id })
+      .populate("transaction_Id")
+      .populate("product_Id")
+      .populate("discountId");
+      res.render("admin/transaction/print", {
+        title: "Staycation | Print Transaction",
+        user: req.session.user,
+        TransDetail,
+        alert
+      });
+    } catch (error) {
+      console.log("error  " , error);
+      res.redirect(`/admin/transaction/print`);
     }
   },
 

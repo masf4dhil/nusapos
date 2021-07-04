@@ -1,6 +1,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
+      <a href="/admin/transaction" class="btn btn-warning">Back</a>
       <!-- Button trigger modal -->
       <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-product">
         <i class="fas fa-plus"></i>
@@ -12,14 +13,9 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>product name</th> 
-              <th>Member</th> 
-              <th>Subtotal</th>
-              <th>Diskon</th>
-              <th>Total</th>
-              <th>Jaminan</th>
+              <th>Product name</th> 
+              <th>Price</th> 
               <th>Description</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +23,8 @@
             <tr>
               <td><%= i + 1 %></td>
               <td><%= TransDetail.product_Id[i].product_name%></td>
+              <td><%= TransDetail.product_Id[i].price%></td>
+              <td><%= TransDetail.product_Id[i].description%></td>
             </tr>
             <% }%>
           </tbody>

@@ -20,6 +20,7 @@ router.get("/member", adminController.viewMember);
 
 router.get("/transaction", transactionController.viewTransaction);
 router.get("/transaction/:id", transactionController.showDetailTransaction);
+router.get("/transaction/print/:id", transactionController.showPrintTransaction);
 // router.get("/barcode", adminController.viewBarcode);
 router.get("/product", productController.viewProduct);
 

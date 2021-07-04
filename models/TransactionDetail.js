@@ -5,13 +5,13 @@ const transactionDetailSchema = new mongoose.Schema({
     type: ObjectId,
     ref: 'product'
   }],
+  discountId:[{
+    type: ObjectId,
+    ref: 'discount'
+  }],
   transaction_Id: [{
     type: ObjectId,
     ref: 'Transaction'
-  }],
-  discount_Id: [{
-    type: ObjectId,
-    ref: 'Discount'
   }],
   product_name: {
     type: String,
