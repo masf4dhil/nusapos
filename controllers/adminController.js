@@ -6,7 +6,8 @@ const tbProduct = require('../models/product');
 const tbTrans = require('../models/Transaction');
 const tbMember = require('../models/Member');
 const { v4: uuidv4 } = require('uuid');
-
+var list = [];
+var flag = '';
 module.exports = {
   
   viewSignIn: async (req, res) => {
@@ -59,30 +60,6 @@ module.exports = {
     res.redirect('/admin/signin');
   },
 
-  viewDashboard: async (req, res) => {
-    try {
-      const product = await tbProduct.find()
-      const member = await tbMember.find()
-      // const booking = await tbBooking.find()
-      // .populate({ path: 'productId', select: 'id name price' });
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus };
-      res.render('admin/dashboard/view_dashboard', {
-        title: "Nusa | Dashboard",
-        user: req.session.user,
-        product,
-        // booking,
-        member,
-        alert
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect('/admin/dashboard');
-    }
-  },
-
   viewMember: async (req, res) => {
     try {
       const member = await tbMember.find();
@@ -129,22 +106,77 @@ module.exports = {
   },
 
   
- 
+  viewDashboard: async (req, res) => {
+    try {
+      const product = await tbProduct.find()
+      const member = await tbMember.find()
+    if( product.length ==  list.length ){
+        // list.splice(0, list.length )
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render('admin/dashboard/view_dashboard', {
+        title: "Nusa | Dashboard",
+        user: req.session.user,
+        product,
+        // booking,
+        member,
+        alert,
+        list
+      });
+    } else{
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render('admin/dashboard/view_dashboard', {
+        title: "Nusa | Dashboard",
+        user: req.session.user,
+        product,
+        // booking,
+        member,
+        alert,
+        list
+      });
+    }
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect('/admin/dashboard');
+    }
+  },
   
 
   addBook: async (req, res) => {
-    const { productId } = req.body;
-    const book = await tbBooking.findOne({ productId: productId });
-    try {
-      if(book){
+    const { barcode } = req.body;
+    const productSearch = await tbProduct.findOne({ barcode: barcode , status: 'Avalaible' });
+    try {       
+      //ini ulang dari render view
+      const product = await tbProduct.find()
+      const member = await tbMember.find()
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus };
+
+
+      const mapList = list.map(x => x.barcode)
+      if(!productSearch ||  mapList.includes(barcode) ){
         req.flash("alertMessage", "Product already choose or not avalaible");
         req.flash("alertStatus", "danger");
         res.redirect(`/admin/dashboard`);
       } else {
-        await tbBooking.create({ productId });
         req.flash("alertMessage", "Succes Add Product");
         req.flash("alertStatus", "success");
-        res.redirect(`/admin/dashboard`);
+        list.push(productSearch);
+        // productSearch.status = "Not Avalaible";
+        // await productSearch.save();
+        res.render('admin/dashboard/view_dashboard', {
+          title: "Nusa | Dashboard",
+          user: req.session.user,
+          product,
+          list,
+          member,
+          alert
+        });
       }
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);

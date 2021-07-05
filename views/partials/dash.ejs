@@ -48,9 +48,6 @@
       }
     }
   }
-
-
-
 </script>
 
 <script>
@@ -60,11 +57,13 @@
 
 
 
+
 <script>
 
 addNumbers = function(el){
   var subtotal = parseInt(document.getElementById("subtotal2").value);
   var idDiskon = parseInt(document.getElementById("arrayidDiskon").value);
+  console.log("idDiskon " , idDiskon);
     var total = 0;
     for( var i = 1; i <= idDiskon; i++ ) {
         var val = parseInt(document.getElementById("diskon" + i).value);

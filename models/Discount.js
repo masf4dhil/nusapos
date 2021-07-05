@@ -3,10 +3,10 @@ const { ObjectId } = mongoose.Schema;
 
 const discountSchema = new mongoose.Schema({
   typeDiskon: {
-    type: String,
-    required: true,
     // enum : ['Diskon','Potongan'],
     // default: 'Diskon'
+    type: String,
+    required: true
   },
   amount: {
     type: Number,

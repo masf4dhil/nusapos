@@ -21,7 +21,7 @@
               <!-- Topbar Search -->
               <form action="/admin/dashboard/addBook" method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                  <input type="text"  name="productId" class="form-control bg-light border-0 small" placeholder="Search for..."
+                  <input type="text"  name="barcode" class="form-control bg-light border-0 small" placeholder="Search for..."
                     aria-label="Search" aria-describedby="basic-addon2">
                   <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
@@ -70,6 +70,100 @@
                 <div class="col-lg-6">
                   <div>
                   <!-- form add trans dimasukin ke sini : no 1 -->
+                  <form action="/admin/dashboard/addTrans" method="POST" >
+                    <div class="container">
+                      <div class="row">
+                        <!-- <div class="col-0">
+                          <button class="btn btn-primary" type="submit"">
+                            <i class="fas fa-plus"></i>
+                          </button>
+                        </div> -->
+                  
+                        <div class="col">
+                          <div class="form-group">
+                            <select class="form-control " name ="select2" id="select2" required>
+                              <option selected disabled value="">Member</option>
+                              <% for(var i = 0; i < member.length; i++){ %>
+                              <option value=<%= member[i]._id %> ><%= member[i].name %></option>
+                              <% } %>
+                            </select>
+                          </div>
+                        </div>
+                  
+                        <div class="col">
+                          <div class="form-group">
+                            <select class="form-control" name="jaminan" required>
+                              <option selected disabled value="">Jaminan</option>
+                              <option value="KTP">KTP / Kartu Pelajar</option>
+                              <option value="kartukeluarga">Kartu Keluarga</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <input class="form-control " type="text" placeholder="<%= moment().format('DD-MMM-YY') %>" id="fdate" name="fdate" required >
+                        </div>
+                        
+                        <div class="col">
+                          <input class="form-control " type="text"  placeholder="<%= moment().format('DD-MMM-YY') %>" id="tdate" name="tdate" required >
+                        </div>
+                  
+                        <!-- <div style="width: 6rem;" > -->
+                          <input class="form-control"  name="time" value="<%= moment().format('LT') %>" type="hidden"  />
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                    <% var subtotal = 0;  %>
+                    <% var idDiskon = 1;  %>
+                      <% for(var i = 0; i < list.length; i++){ %>
+                      <input class="form-control" type="hidden" value=<%= subtotal += list[i].price %> >
+                      <input type="hidden"  name="productId"  value=<%= list[i]._id %>  >
+                      <div class="card shadow mb-4">
+                        <div class="card-header">
+                          <div class="row justify-content-between">
+                            <div class="col-4">
+                              <h6 class="m-0 font-weight-bold text-primary"> <%= list[i].product_name %> </h6>
+                            </div>
+                            <div class="col-4">
+                              <input class="form-control" type="number" id="price" name="price" value="<%= list[i].price %>" >
+                              </div>
+                          </div> 
+                        </div>
+                  
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group" >
+                                <select class="form-control" name="typeDiskon" id="typeDiskon" >
+                                  <option selected disabled value="">Type Diskon</option>
+                                  <option value="Persen">Persen</option>
+                                  <option value="Potongan">Potongan</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <input type="number" class="form-control" onkeyup="addNumbers(this)" name="everyDiskon" id="diskon<%= idDiskon + i  %>">
+                              <!-- ini buat dapetin value jumlah array nya -->
+                              <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  list.length  %> >
+                            </div>
+                            <div class="col">
+                            </div>
+                          </div>
+                          <input class="form-control" type="text"  placeholder="Description" name="desc" required>
+                        </div>
+                      </div>
+                      <% } %>
+                  
+                     <div style="width: 18rem;" class="card shadow mb-4">
+                     
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> Subtotal :  <input  class="form-control" value=" <%= subtotal %>" type="text" id="subtotal2" name="subtotal2" readonly="true" /></li>
+                        <li class="list-group-item"> Total Rent :  <input class="form-control"  type="number" name="days" placeholder="Total rent" id="days" readonly="true" /></li>
+                          <li class="list-group-item">Diskon     :   <input class="form-control"  type="text" id="totalDiskon" name="totalDiskon" readonly="true" /> </li>
+                        <li class="list-group-item">Total     : <input class="form-control"  type="text" id="totalAll" name="totalAll" readonly="true" /> </li>
+                      </ul>
+                    </div>
+                  
+                  </form>
                   </div>
               
                 </div>
