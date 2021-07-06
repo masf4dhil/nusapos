@@ -212,14 +212,16 @@ module.exports = {
         res.redirect(`/admin/dashboard`);
       } else {
         //This big shit
-        const product = await tbProduct.find({ _id : '5e96cbe292b97300fc903145'});
-        product.status = "NOT AVALAIBLE";
-        await product.save();
+        const product = await tbProduct.find({ _id : productId});
+        for (var i = 0; i < product.length; i++){
+        product[i].status = "NOT AVALAIBLE";
+        await product[i].save();
+        }
         await tbTrans.create({productId ,select2, time, fdate, tdate, days ,typeDiskon , everyDiskon , jaminan ,subtotal2 ,totalDiskon, totalAll ,desc});
         req.flash("alertMessage", "Succes Add Transaction");
         req.flash("alertStatus", "success");
         res.redirect(`/admin/dashboard`);
-        await tbBooking.deleteMany();
+        // await tbBooking.deleteMany();
       }
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
