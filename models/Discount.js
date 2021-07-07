@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Schema;
 
 const discountSchema = new mongoose.Schema({
-  typeDiskon: {
+  typeDiscount: {
     // enum : ['Diskon','Potongan'],
     // default: 'Diskon'
     type: String,

@@ -127,17 +127,17 @@ var data = [
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d'),
-        typeDiskon:"Diskon",
+        typeDiscount:"Discount Rebate",
         amount: 1000,
-        desc:"diskon hit ramadhan",
-        status: "Not Avalaible"
+        description:"diskon hit ramadhan",
+        status: "Active"
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242'),
-        typeDiskon:"Diskon",
+        typeDiscount:"Discount Percent",
         amount: 2000,
-        desc:"diskon hit puasa lah",
-        status: "Not Avalaible"
+        description:"diskon hit puasa lah",
+        status: "Active"
       },
     ]
   },
