@@ -74,20 +74,19 @@ module.exports = {
     }
    },
 
-  //  deleteProduct: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const product = await tbProduct.findOne({ _id: id });
-  //     await fs.unlink(path.join(`public/${product.image}`));
-  //     await product.remove();
-  //     req.flash('alertMessage', 'Success Delete Product');
-  //     req.flash('alertStatus', 'success');
-  //     res.redirect('/admin/product');
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/admin/product');
-  //   }
-  // },
+   deleteProduct: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const discount = await tbDiscount.findOne({ _id: id });
+      await discount.remove();
+      req.flash('alertMessage', 'Success Delete Discount');
+      req.flash('alertStatus', 'success');
+      res.redirect('/admin/discount');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/discount');
+    }
+  },
 
 }

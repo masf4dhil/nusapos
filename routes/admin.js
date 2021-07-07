@@ -5,6 +5,7 @@ const { uploadSingle, uploadMultiple } = require('../middleware/multer');
 const auth = require('../middleware/auth');
 const transactionController = require('../controllers/transactionController');
 const discountController = require('../controllers/discountController');
+const merkController = require('../controllers/merkController');
 
 router.get("/signin", adminController.viewSignIn);
 router.post("/signin", adminController.actionSignin);
@@ -26,9 +27,16 @@ router.get("/transaction/print/:id", transactionController.showPrintTransaction)
 router.get("/discount", discountController.viewDiscount);
 router.post("/discount", discountController.addDiscount);
 router.put("/discount", discountController.editDiscount);
+router.delete('/discount/:id', discountController.deleteProduct);
+
 
 router.get("/product", productController.viewProduct);
 router.post("/product", uploadSingle, productController.addProduct);
 router.put("/product", uploadSingle, productController.editProduct);
 router.delete('/product/:id', productController.deleteProduct);
+
+
+router.get("/merk", merkController.viewMerk);
+router.post("/merk", merkController.addMerk);
+router.put("/merk", merkController.editMerk);
 module.exports = router;

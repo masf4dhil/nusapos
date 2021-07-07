@@ -18,11 +18,17 @@
         <%- include('../../partials/message.ejs') %>
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Discount</h1>
+        <h1 class="h3 mb-4 text-gray-800">Merk</h1>
         <!-- End Heading -->
 
         <!-- nanti di sini diisi table nya -->
-        <%- include('table_discount.ejs') %>
+        <div class="row">
+            <div class="col-lg-6">
+                <%- include('table_merk.ejs') %>
+            </div>
+
+        </div>
+       
 
       </div>
       <!-- /.container-fluid -->
@@ -63,22 +69,17 @@
   </div>
 </div>
 
-<%- include('add_discount.ejs') %>
-<%- include('edit_discount.ejs') %>
+<%- include('add_merk.ejs') %>
+<%- include('edit_merk.ejs') %>
 <%- include('../../partials/js.ejs') %>
 
 <script>
-  $('#dataTable').on('click', '.button-update', function () {
-    let id = $(this).data('id');
-    let diskon = $(this).data('diskon');
-    let amount = $(this).data('amount');
-    let description = $(this).data('description');
-    let status = $(this).data('status');
-    $('#edit-discount').modal('show');
-    $('.id').val(id);
-    $('.diskon').val(diskon);
-    $('.amount').val(amount);
-    $('.description').val(description);
-    $('.status').val(status);
-  })
+    $('#dataTable').on('click', '.button-update', function () {
+      let id = $(this).data('id');
+      let name = $(this).data('name');
+      $('#edit-merk').modal('show');
+      $('.id').val(id);
+      $('.name').val(name);
+      console.log("name " , diskon)
+    })
 </script>
