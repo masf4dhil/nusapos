@@ -33,49 +33,49 @@ module.exports = {
     }
   },
 
-  addMerk: async (req, res) => {
+  addType: async (req, res) => {
     try {
       const { name  } = req.body;
-       await tbMerk.create({name});
-        req.flash("alertMessage", "Succes Add Merk");
+       await tbType.create({name});
+        req.flash("alertMessage", "Succes Add Type");
         req.flash("alertStatus", "success");
-        res.redirect("/admin/merk");
+        res.redirect("/admin/type");
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", 'danger');
-      res.redirect("/admin/merk");
+      res.redirect("/admin/type");
     }
   },
 
-  editMerk : async (req, res) => {
+  editType : async (req, res) => {
     const {id, name  } = req.body;
     try {
-      const merk = await tbMerk.findOne({ _id: id })
-      merk.name = name;
-      await merk.save();
-      req.flash("alertMessage", "Succes Update Merk");
+      const type = await tbType.findOne({ _id: id })
+      type.name = name;
+      await type.save();
+      req.flash("alertMessage", "Succes Update Type");
       req.flash("alertStatus", "success");
-      res.redirect("/admin/merk");
+      res.redirect("/admin/type");
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", 'danger');
-     res.redirect("/admin/merk");
+     res.redirect("/admin/type");
     }
    },
 
-  //  deleteProduct: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const discount = await tbDiscount.findOne({ _id: id });
-  //     await discount.remove();
-  //     req.flash('alertMessage', 'Success Delete Discount');
-  //     req.flash('alertStatus', 'success');
-  //     res.redirect('/admin/discount');
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/admin/discount');
-  //   }
-  // },
+   deleteType: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const type = await tbType.findOne({ _id: id });
+      await type.remove();
+      req.flash('alertMessage', 'Success Delete Type');
+      req.flash('alertStatus', 'success');
+      res.redirect('/admin/type');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/type');
+    }
+  },
 
 }

@@ -63,19 +63,19 @@ module.exports = {
     }
    },
 
-  //  deleteProduct: async (req, res) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const discount = await tbDiscount.findOne({ _id: id });
-  //     await discount.remove();
-  //     req.flash('alertMessage', 'Success Delete Discount');
-  //     req.flash('alertStatus', 'success');
-  //     res.redirect('/admin/discount');
-  //   } catch (error) {
-  //     req.flash('alertMessage', `${error.message}`);
-  //     req.flash('alertStatus', 'danger');
-  //     res.redirect('/admin/discount');
-  //   }
-  // },
+   deleteMerk: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const merk = await tbMerk.findOne({ _id: id });
+      await merk.remove();
+      req.flash('alertMessage', 'Success Delete Merk');
+      req.flash('alertStatus', 'success');
+      res.redirect('/admin/merk');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/merk');
+    }
+  },
 
 }

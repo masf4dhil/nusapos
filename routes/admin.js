@@ -40,7 +40,11 @@ router.delete('/product/:id', productController.deleteProduct);
 router.get("/merk", merkController.viewMerk);
 router.post("/merk", merkController.addMerk);
 router.put("/merk", merkController.editMerk);
+router.delete('/merk/:id', merkController.deleteMerk);
 
 router.get("/type", typeController.viewType);
+router.post("/type", typeController.addType);
+router.put("/type", typeController.editType);
+router.delete('/type/:id', typeController.deleteType);
 
 module.exports = router;
