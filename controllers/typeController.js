@@ -1,0 +1,81 @@
+const bycrypt = require("bcryptjs");
+const fs = require('fs-extra');
+const path = require('path');
+const users = require('../models/User');
+const tbProduct = require('../models/product');
+const tbTrans = require('../models/Transaction');
+const tbMember = require('../models/Member');
+const tbType = require('../models/type');
+const tbMerk = require('../models/merk');
+const tbDiscount = require('../models/discount');
+const { v4: uuidv4 } = require('uuid');
+var mongoose = require('mongoose');
+// var _id = mongoose.Types.ObjectId();
+
+
+module.exports = {
+  viewType: async (req, res) => {
+    try {
+      const type = await tbType.find()
+      const alertMessage = req.flash("alertMessage");
+      const alertStatus = req.flash("alertStatus");
+      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+      res.render('admin/type/view_type', {
+        title: "Nusa | Type",
+        user: req.session.user, 
+        type,
+        alert,
+      });
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/type");
+    }
+  },
+
+  addMerk: async (req, res) => {
+    try {
+      const { name  } = req.body;
+       await tbMerk.create({name});
+        req.flash("alertMessage", "Succes Add Merk");
+        req.flash("alertStatus", "success");
+        res.redirect("/admin/merk");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+      res.redirect("/admin/merk");
+    }
+  },
+
+  editMerk : async (req, res) => {
+    const {id, name  } = req.body;
+    try {
+      const merk = await tbMerk.findOne({ _id: id })
+      merk.name = name;
+      await merk.save();
+      req.flash("alertMessage", "Succes Update Merk");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/merk");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", 'danger');
+     res.redirect("/admin/merk");
+    }
+   },
+
+  //  deleteProduct: async (req, res) => {
+  //   try {
+  //     const { id } = req.params;
+  //     const discount = await tbDiscount.findOne({ _id: id });
+  //     await discount.remove();
+  //     req.flash('alertMessage', 'Success Delete Discount');
+  //     req.flash('alertStatus', 'success');
+  //     res.redirect('/admin/discount');
+  //   } catch (error) {
+  //     req.flash('alertMessage', `${error.message}`);
+  //     req.flash('alertStatus', 'danger');
+  //     res.redirect('/admin/discount');
+  //   }
+  // },
+
+}

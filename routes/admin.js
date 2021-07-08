@@ -6,6 +6,7 @@ const auth = require('../middleware/auth');
 const transactionController = require('../controllers/transactionController');
 const discountController = require('../controllers/discountController');
 const merkController = require('../controllers/merkController');
+const typeController = require('../controllers/typeController');
 
 router.get("/signin", adminController.viewSignIn);
 router.post("/signin", adminController.actionSignin);
@@ -39,4 +40,7 @@ router.delete('/product/:id', productController.deleteProduct);
 router.get("/merk", merkController.viewMerk);
 router.post("/merk", merkController.addMerk);
 router.put("/merk", merkController.editMerk);
+
+router.get("/type", typeController.viewType);
+
 module.exports = router;
