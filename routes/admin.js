@@ -25,24 +25,24 @@ router.get("/transaction", transactionController.viewTransaction);
 router.get("/transaction/:id", transactionController.showDetailTransaction);
 router.get("/transaction/print/:id", transactionController.showPrintTransaction);
 
-router.get("/discount", discountController.viewDiscount);
+router.get("/discount", adminController.viewDiscount);
 router.post("/discount", discountController.addDiscount);
 router.put("/discount", discountController.editDiscount);
-router.delete('/discount/:id', discountController.deleteProduct);
+router.delete('/discount/:id', discountController.deleteDiscount);
 
 
-router.get("/product", productController.viewProduct);
+router.get("/product", adminController.viewProduct);
 router.post("/product", uploadSingle, productController.addProduct);
 router.put("/product", uploadSingle, productController.editProduct);
 router.delete('/product/:id', productController.deleteProduct);
 
 
-router.get("/merk", merkController.viewMerk);
+router.get("/merk", adminController.viewMerk);
 router.post("/merk", merkController.addMerk);
 router.put("/merk", merkController.editMerk);
 router.delete('/merk/:id', merkController.deleteMerk);
 
-router.get("/type", typeController.viewType);
+router.get("/type", adminController.viewType);
 router.post("/type", typeController.addType);
 router.put("/type", typeController.editType);
 router.delete('/type/:id', typeController.deleteType);

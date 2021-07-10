@@ -14,40 +14,61 @@ var mongoose = require('mongoose');
 
 
 module.exports = {
-  viewDiscount: async (req, res) => {
-    try {
-      const discount = await tbDiscount.find()
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/discount/view_discount', {
-        title: "Nusa | Discount",
-        user: req.session.user, 
-        discount,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/discount");
-    }
-  },
+  // viewDiscount: async (req, res) => {
+  //   try {
+  //     const discount = await tbDiscount.find()
+  //     const alertMessage = req.flash("alertMessage");
+  //     const alertStatus = req.flash("alertStatus");
+  //     const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+  //     res.render('admin/discount/view_discount', {
+  //       title: "Nusa | Discount",
+  //       user: req.session.user, 
+  //       discount,
+  //       alert,
+  //     });
+  //   } catch (error) {
+  //     req.flash("alertMessage", `${error.message}`);
+  //     req.flash("alertStatus", 'danger');
+  //     res.redirect("/admin/discount");
+  //   }
+  // },
 
   addDiscount: async (req, res) => {
     try {
-      const { typeDiscount, amount, description, status  } = req.body;
+      const {typeDiscount, amount, description, status  } = req.body;
         const  newItem = {
           typeDiscount,
           amount,
           description, 
           status,
         }
-        console.log("new item " , newItem);
         const dataItem = await tbDiscount.create(newItem);
         await dataItem.save();
+
+        const discount = await tbDiscount.find();
+        const mapidDiscount = discount.map(x => x.id);
+        const mapTypediscount = discount.map(x => x.typeDiscount);
+        const mapAmount = discount.map(x => x.amount);
+
+        const product = await tbProduct.find();
+        const mapidProduct = product.map(z => z.id);
+        for (let i = 0; i < product.length; i++) {
+          const productPush = await tbProduct.findOne({ _id: product[i].id })
+          productPush.discount_id = mapidDiscount;
+          await productPush.save();
+        }
+
+        for (x = 0; x < discount.length; x++) {
+          const discountPush = await tbDiscount.findOne({ _id: discount[x].id})
+          discountPush.product_id = mapidProduct;
+          await discountPush.save();
+        }
+
+
         req.flash("alertMessage", "Succes Add Discount");
         req.flash("alertStatus", "success");
         res.redirect("/admin/discount");
+
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
       req.flash("alertStatus", 'danger');
@@ -74,7 +95,7 @@ module.exports = {
     }
    },
 
-   deleteProduct: async (req, res) => {
+   deleteDiscount: async (req, res) => {
     try {
       const { id } = req.params;
       const discount = await tbDiscount.findOne({ _id: id });

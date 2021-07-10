@@ -108,6 +108,10 @@ var data = [
         image:'images/1.PNG',
         price: 12000,
         barcode: 'BR12345',
+        discount_id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d') },
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242') },
+        ] ,
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01'),
@@ -119,6 +123,10 @@ var data = [
         image:'images/1.PNG',
         price: 13000,
         barcode: 'BR23463',
+        discount_id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d') },
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242') },
+        ] ,
       },
     ]
   },
@@ -130,14 +138,22 @@ var data = [
         typeDiscount:"Discount Rebate",
         amount: 1000,
         description:"diskon hit ramadhan",
-        status: "Active"
+        status: "Active",
+        product_id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01') },
+        ] ,
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242'),
         typeDiscount:"Discount Percent",
         amount: 2000,
         description:"diskon hit puasa lah",
-        status: "Active"
+        status: "Active",
+        product_id: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90bb01') },
+          { _id: mongoose.Types.ObjectId('1e96cbe292b97310fc90bb01') },
+        ] ,
       },
     ]
   },

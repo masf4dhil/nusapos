@@ -19,6 +19,10 @@ const discountSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  product_id:[{
+    type: ObjectId,
+    ref: "product"
+  }]
   
 })
 

@@ -14,30 +14,30 @@ var mongoose = require('mongoose');
 
 
 module.exports = {
-  viewProduct: async (req, res) => {
-    try {
-      const product = await tbProduct.find()
-      .populate({ path: 'typeId', select: 'id name' })
-      .populate({ path: 'merkId', select: 'id name' })
-      const merk = await tbMerk.find();
-      const type = await tbType.find();
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/product/view_product', {
-        title: "Nusa | Product",
-        user: req.session.user, 
-        merk,
-        type,
-        product,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/product");
-    }
-  },
+  // viewProduct: async (req, res) => {
+  //   try {
+  //     const product = await tbProduct.find()
+  //     .populate({ path: 'typeId', select: 'id name' })
+  //     .populate({ path: 'merkId', select: 'id name' })
+  //     const merk = await tbMerk.find();
+  //     const type = await tbType.find();
+  //     const alertMessage = req.flash("alertMessage");
+  //     const alertStatus = req.flash("alertStatus");
+  //     const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+  //     res.render('admin/product/view_product', {
+  //       title: "Nusa | Product",
+  //       user: req.session.user, 
+  //       merk,
+  //       type,
+  //       product,
+  //       alert,
+  //     });
+  //   } catch (error) {
+  //     req.flash("alertMessage", `${error.message}`);
+  //     req.flash("alertStatus", 'danger');
+  //     res.redirect("/admin/product");
+  //   }
+  // },
 
   addProduct: async (req, res) => {
     try {

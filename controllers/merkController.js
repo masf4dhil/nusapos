@@ -14,24 +14,24 @@ var mongoose = require('mongoose');
 
 
 module.exports = {
-  viewMerk: async (req, res) => {
-    try {
-      const merk = await tbMerk.find()
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/merk/view_merk', {
-        title: "Nusa | Merk",
-        user: req.session.user, 
-        merk,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/merk");
-    }
-  },
+  // viewMerk: async (req, res) => {
+  //   try {
+  //     const merk = await tbMerk.find()
+  //     const alertMessage = req.flash("alertMessage");
+  //     const alertStatus = req.flash("alertStatus");
+  //     const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+  //     res.render('admin/merk/view_merk', {
+  //       title: "Nusa | Merk",
+  //       user: req.session.user, 
+  //       merk,
+  //       alert,
+  //     });
+  //   } catch (error) {
+  //     req.flash("alertMessage", `${error.message}`);
+  //     req.flash("alertStatus", 'danger');
+  //     res.redirect("/admin/merk");
+  //   }
+  // },
 
   addMerk: async (req, res) => {
     try {

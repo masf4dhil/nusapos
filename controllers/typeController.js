@@ -14,24 +14,24 @@ var mongoose = require('mongoose');
 
 
 module.exports = {
-  viewType: async (req, res) => {
-    try {
-      const type = await tbType.find()
-      const alertMessage = req.flash("alertMessage");
-      const alertStatus = req.flash("alertStatus");
-      const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
-      res.render('admin/type/view_type', {
-        title: "Nusa | Type",
-        user: req.session.user, 
-        type,
-        alert,
-      });
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect("/admin/type");
-    }
-  },
+  // viewType: async (req, res) => {
+  //   try {
+  //     const type = await tbType.find()
+  //     const alertMessage = req.flash("alertMessage");
+  //     const alertStatus = req.flash("alertStatus");
+  //     const alert = { message: alertMessage, status: alertStatus , user: req.session.user };
+  //     res.render('admin/type/view_type', {
+  //       title: "Nusa | Type",
+  //       user: req.session.user, 
+  //       type,
+  //       alert,
+  //     });
+  //   } catch (error) {
+  //     req.flash("alertMessage", `${error.message}`);
+  //     req.flash("alertStatus", 'danger');
+  //     res.redirect("/admin/type");
+  //   }
+  // },
 
   addType: async (req, res) => {
     try {
