@@ -113,7 +113,7 @@
                       </div>
                     </div>
                     <% var subtotal = 0;  %>
-                    <% var idDiskon = 1;  %>
+                    <% var generateID = 1;  %>
                     <% let diskonValue   %>
                       <% for(var i = 0; i < list.length; i++){ %>
                       <input class="form-control" type="hidden" value=<%= subtotal += list[i].price %> >
@@ -129,22 +129,21 @@
                               </div>
                           </div> 
                         </div>
-                  
+                       
                         <div class="card-body">
                           <div class="row">
                             <div class="col">
                               <div class="form-group" >
-                                <select class="form-control" name="discount_id" id="discount_id" onchange="displayValue(this)" >
+                                <select class="form-control" id="discountValue<%= generateID + i  %>" name="discountValue" onchange="displayValue('<%= JSON.stringify(generateID + i) %>')" >
                                   <option selected disabled value="">Type Diskon</option>
                                   <% for(var x = 0; x < list[i].discount_id.length; x++){ %>
-                                    <option value="list[i].discount_id[x].discount_id" > <%= list[i].discount_id[x].amount %></option>
-                                    <% diskonValue =  list[i].discount_id[x].amount %>
+                                    <option value=<%= list[i].discount_id[x].amount %> > <%= list[i].discount_id[x].typeDiscount %></option>
                                     <% } %>
                                   </select>
                               </div>
                             </div>
                             <div class="col">
-                              <input type="number" class="form-control" onkeyup="addNumbers(this)" name="everyDiskon" value=<%= diskonValue  %> id="diskon<%= idDiskon + i  %>">
+                              <input type="number" class="form-control" name="diskon<%= generateID + i  %>" value="" id= "diskon<%= generateID + i  %>" >
                               <!-- ini buat dapetin value jumlah array nya -->
                               <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  list.length  %> >
                             </div>
@@ -157,7 +156,6 @@
                       <% } %>
                   
                      <div style="width: 18rem;" class="card shadow mb-4">
-                     
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item"> Subtotal :  <input  class="form-control" value=" <%= subtotal %>" type="text" id="subtotal2" name="subtotal2" readonly="true" /></li>
                         <li class="list-group-item"> Rental Days :  <input class="form-control"  type="number" name="days"  id="days" readonly="true" /></li>

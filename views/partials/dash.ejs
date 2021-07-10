@@ -50,22 +50,46 @@
   }
 
 
-  addNumbers = function(el){
-  var subtotal = parseInt(document.getElementById("subtotal2").value);
-  var idDiskon = parseInt(document.getElementById("arrayidDiskon").value);
-  console.log("idDiskon " , idDiskon);
-    var total = 0;
-    for( var i = 1; i <= idDiskon; i++ ) {
-        var val = parseInt(document.getElementById("diskon" + i).value);
-        if(val>0){
-            total += val;
-        }      
-    }
-   var diskon = document.getElementById('totalDiskon').value = total;
-   var finalTotal = subtotal - diskon;
+//   addNumbers = function(el){
+//   var subtotal = parseInt(document.getElementById("subtotal2").value);
+//   var idDiskon = parseInt(document.getElementById("arrayidDiskon").value);
+//     var total = 0;
+//     for( var i = 1; i <= idDiskon; i++ ) {
+//         var val = parseInt(document.getElementById("diskon" + i).value);
+//         if(val>0){
+//             total += val;
+//         }      
+//     }
+//    var diskon = document.getElementById('totalDiskon').value = total;
+//    var finalTotal = subtotal - diskon;
 
-   document.getElementById('totalAll').value = finalTotal;
-}
+//    document.getElementById('totalAll').value = finalTotal;
+// }
+
+  function displayValue(data) {
+    var id = "diskon" + data;
+    let idValue = "discountValue" + data;
+
+    var ex = parseInt(document.getElementById(idValue).value);
+    document.getElementById(id).value = ex
+
+    if (ex) {
+      var subtotal = parseInt(document.getElementById("subtotal2").value);
+      var idDiskon = parseInt(document.getElementById("arrayidDiskon").value);
+      var total = 0;
+      for (var i = 1; i <= idDiskon; i++) {
+        var val = parseInt(document.getElementById("diskon" + i).value);
+        if (val > 0) {
+          total += val;
+        }
+      }
+      var diskon = document.getElementById('totalDiskon').value = total;
+      var finalTotal = subtotal - diskon;
+      document.getElementById('totalAll').value = finalTotal;
+    }
+  }
+ 
+</script>
 
 
 function name(params) {
@@ -110,10 +134,10 @@ function name(params) {
       var add = parseInt(document.getElementById("subtotal1").value);
       var days = parseInt(document.getElementById("days").value);
       var subtotal = add * days;
-      if(subtotal > 0){
+      // if(subtotal > 0){
         document.getElementById('subtotal2').value = subtotal;
         
-      }
+      // }
    
     });
 
