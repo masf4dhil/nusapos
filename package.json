@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "ui": "browser-sync start --proxy localhost:3000 --files=**/*  --ignore=node_modules  --no-ui --no-inject-changes"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
