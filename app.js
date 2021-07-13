@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const methodOverride = require('method-override');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/Users');
+var usersRouter = require('./routes/users');
 const session = require('express-session');
 const flash = require('connect-flash');
 // route ke admin
