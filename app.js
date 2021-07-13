@@ -10,6 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 // route ke admin
 const adminRouter = require('./routes/admin');
+const apiRouter = require("./routes/api");
 
 //import mongoose
 const mongoose = require("mongoose");
@@ -52,6 +53,7 @@ app.use('/users', usersRouter);
 
 //admin
 app.use('/admin', adminRouter);
+app.use("/api/v1", apiRouter);
 
 //ini init static untuk arahin path css dari sb admin
 app.use(
