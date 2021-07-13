@@ -13,7 +13,7 @@ const adminRouter = require('./routes/admin');
 
 //import mongoose
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/nusa', {
+mongoose.connect('mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nusa?retryWrites=true&w=majority', {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,
