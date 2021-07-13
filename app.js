@@ -49,7 +49,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/Users', usersRouter);
+app.use('/users', usersRouter);
 
 //admin
 app.use('/admin', adminRouter);
