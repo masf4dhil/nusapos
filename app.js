@@ -25,7 +25,6 @@ mongoose.connect('mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nus
 // ini route ke index.ejs (login)
 var indexRouter = require("./routes/index");
 
-
 var app = express();
 
 // view engine setup
