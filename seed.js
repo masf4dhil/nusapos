@@ -14,14 +14,14 @@ seeder.connect('mongodb://localhost:27017/nusa', {
     './models/Member',
     './models/merk',
     './models/product',
-    './models/Transaction',
+    './models/transaction',
     './models/TransactionDetail',
     './models/discount',
     './models/type',
   ]);
 
   // Clear specified collections
-  seeder.clearModels(['User' , 'Member', 'merk','product' , 'Transaction', 'TransactionDetail', 'discount', 'type' ], function () {
+  seeder.clearModels(['User' , 'Member', 'merk','product' , 'transaction', 'TransactionDetail', 'discount', 'type' ], function () {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, function () {
       seeder.disconnect();
@@ -158,7 +158,7 @@ var data = [
     ]
   },
   {
-    'model': 'Transaction',
+    'model': 'transaction',
     'documents': [  
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101445'),
@@ -172,7 +172,7 @@ var data = [
         status: "DONE",
         guarantee: "KTP", 
         note: "transakasi pertama bos",
-        transDetail: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101245') },
+        idtransdetail: { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc101245') },
       },
     ]
   },
