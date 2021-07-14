@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema;
 const transactionSchema = new mongoose.Schema({
   member_Id: {
     type: ObjectId,
-    ref: 'Member'
+    ref: 'member'
   },
   subtotal: {
     type: Number,
