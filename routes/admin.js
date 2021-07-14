@@ -19,8 +19,6 @@ router.post("/dashboard/addBook", adminController.addBook);
 router.post("/dashboard/addTrans", adminController.addTrans);
 
 
-router.get("/member", adminController.viewMember);
-
 router.get("/transaction", transactionController.viewTransaction);
 router.get("/transaction/:id", transactionController.showDetailTransaction);
 router.get("/transaction/print/:id", transactionController.showPrintTransaction);
@@ -46,5 +44,7 @@ router.get("/type", adminController.viewType);
 router.post("/type", typeController.addType);
 router.put("/type", typeController.editType);
 router.delete('/type/:id', typeController.deleteType);
+
+router.get("/member", adminController.viewMember);
 
 module.exports = router;

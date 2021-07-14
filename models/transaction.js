@@ -41,10 +41,10 @@ const transactionSchema = new mongoose.Schema({
   note: {
     type: String,
   },
-  transDetail: {
+  idtransdetail: {
     type: ObjectId,
     ref: 'TransactionDetail'
   },
 })
 
-module.exports = mongoose.model("Transaction", transactionSchema);
+module.exports = mongoose.model("transaction", transactionSchema);

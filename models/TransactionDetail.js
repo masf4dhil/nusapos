@@ -11,7 +11,7 @@ const transactionDetailSchema = new mongoose.Schema({
   }],
   transaction_Id: [{
     type: ObjectId,
-    ref: 'Transaction'
+    ref: 'transaction'
   }],
   product_name: {
     type: String,
