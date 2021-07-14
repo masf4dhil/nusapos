@@ -11,10 +11,12 @@ const flash = require('connect-flash');
 // route ke admin
 const adminRouter = require('./routes/admin');
 const apiRouter = require("./routes/api");
+const localDB = 'mongodb://localhost:27017/nusa';
+const deployDB = 'mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nusa?retryWrites=true&w=majority';
 
 //import mongoose
 const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nusa?retryWrites=true&w=majority', {
+mongoose.connect(localDB, {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,

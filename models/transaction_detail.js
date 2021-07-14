@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const  { ObjectId } = mongoose.Schema;
-const transactionDetailSchema = new mongoose.Schema({
+const transaction_detailSchema = new mongoose.Schema({
   product_Id:[{
     type: ObjectId,
     ref: 'product'
@@ -26,4 +26,4 @@ const transactionDetailSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model("TransactionDetail", transactionDetailSchema);
+module.exports = mongoose.model("transaction_detail", transaction_detailSchema);

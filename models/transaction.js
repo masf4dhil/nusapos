@@ -41,9 +41,9 @@ const transactionSchema = new mongoose.Schema({
   note: {
     type: String,
   },
-  idtransdetail: {
+  transdetail_id: {
     type: ObjectId,
-    ref: 'TransactionDetail'
+    ref: 'transaction_detail'
   },
 })
 

@@ -1,10 +1,10 @@
 const bycrypt = require("bcryptjs");
 const fs = require('fs-extra');
 const path = require('path');
-const users = require('../models/User');
+const users = require('../models/user');
 const tbProduct = require('../models/product');
 const tbTrans = require('../models/transaction');
-const tbTransDetail = require('../models/TransactionDetail')
+const tbTransDetail = require('../models/transaction_detail')
 const tbMember = require('../models/member');
 const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
@@ -15,10 +15,11 @@ var mongoose = require('mongoose');
 
 module.exports = {
   viewTransaction: async (req, res) => {
+    console.log("trans " );
     try {
       const trans = await tbTrans.find()
         .populate({ path: 'member_Id ', select: 'name no_member' })
-        .populate({ path: 'productId ', select: 'name' })
+        console.log("trans " , trans);
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus, user: req.session.user };

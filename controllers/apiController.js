@@ -1,7 +1,6 @@
 const bycrypt = require("bcryptjs");
 const fs = require('fs-extra');
 const path = require('path');
-const users = require('../models/User');
 const tbProduct = require('../models/product');
 const tbTrans = require('../models/transaction');
 const tbMember = require('../models/member');
