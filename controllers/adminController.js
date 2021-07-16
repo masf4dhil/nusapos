@@ -176,11 +176,8 @@ module.exports = {
     try {
       const product = await tbProduct.find()
       .populate({ path: 'discount_id', select: 'typeDiscount amount' })
-      // // const mapProduct = product.map(x => x.discount_id)
-      // console.log(product);
       const member = await tbMember.find()
     if( product.length ==  list.length ){
-        // list.splice(0, list.length )
       const alertMessage = req.flash("alertMessage");
       const alertStatus = req.flash("alertStatus");
       const alert = { message: alertMessage, status: alertStatus };
@@ -236,8 +233,6 @@ module.exports = {
         req.flash("alertStatus", "danger");
         res.redirect(`/admin/dashboard`);
       } else {
-        // req.flash("alertMessage", "Succes Add Product");
-        // req.flash("alertStatus", "success");
         list.push(productSearch);
         res.render('admin/dashboard/view_dashboard', {
           title: "Nusa | Dashboard",
@@ -255,49 +250,6 @@ module.exports = {
     }
   },
 
-  addTrans: async (req, res) => {
-    const id = uuidv4();
-    const _id = id.slice(0, 8)
-
-    const { productId, fdate, tdate, jaminan ,time , days , select2,subtotal2, typeDiscount, everyDiskon, totalDiskon, totalAll,  desc}  = req.body;
-  
-    console.log("_id  " + _id);
-    console.log("productId  " + productId);
-    console.log("jaminan  " + jaminan);
-    console.log("time  " + time);
-    console.log("fdate  " + fdate);
-    console.log("tdate  " + tdate);
-    console.log("days  " + days);
-    console.log("memberID  " + select2);
-    console.log("typeDiscount  " + typeDiscount); 
-    console.log("everyDiskon  " + everyDiskon); 
-    console.log("subtotal2  " + subtotal2); 
-    console.log("totalDiskon  " + totalDiskon); 
-    console.log("totalAll  " + totalAll); 
-    console.log("desc  " + desc); 
-    try {
-      if(!productId){
-        req.flash("alertMessage", "Product Empty");
-        req.flash("alertStatus", "danger");
-        res.redirect(`/admin/dashboard`);
-      } else {
-        //This big shit
-        const product = await tbProduct.find({ _id : productId});
-        for (var i = 0; i < product.length; i++){
-        product[i].status = "NOT AVALAIBLE";
-        await product[i].save();
-        }
-        await tbTrans.create({productId ,select2, time, fdate, tdate, days ,typeDiscount , everyDiskon , jaminan ,subtotal2 ,totalDiskon, totalAll ,desc});
-        req.flash("alertMessage", "Succes Add Transaction");
-        req.flash("alertStatus", "success");
-        res.redirect(`/admin/dashboard`);
-        // await tbBooking.deleteMany();
-      }
-    } catch (error) {
-      req.flash("alertMessage", `${error.message}`);
-      req.flash("alertStatus", 'danger');
-      res.redirect(`/admin/dashboard`);
-    }
-  },
+ 
 
 }
