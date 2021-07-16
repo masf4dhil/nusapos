@@ -16,7 +16,7 @@ const deployDB = 'mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nus
 
 //import mongoose
 const mongoose = require("mongoose");
-mongoose.connect(localDB, {
+mongoose.connect(deployDB, {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,
