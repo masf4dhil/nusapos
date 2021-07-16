@@ -10,12 +10,10 @@ const tbType = require('../models/type');
 const tbMerk = require('../models/merk');
 const { v4: uuidv4 } = require('uuid');
 var mongoose = require('mongoose');
-// var _id = mongoose.Types.ObjectId();
 
 
 module.exports = {
   viewTransaction: async (req, res) => {
-    console.log("trans " );
     try {
       const trans = await tbTrans.find()
         .populate({ path: 'member_Id ', select: 'name no_member' })
@@ -78,6 +76,51 @@ module.exports = {
       console.log("error  " , error);
       res.redirect(`/admin/transaction/print`);
     }
+  },
+
+  addTrans: async (req, res) => {
+    const id = uuidv4();
+    const _id = id.slice(0, 8)
+
+    const { productId, fdate, tdate, jaminan ,time , days , select2,subtotal2, typeDiscount, everyDiskon, totalDiskon, totalAll,  desc}  = req.body;
+  
+    console.log("_id  " + _id);
+    console.log("productId  " + productId);
+    console.log("jaminan  " + jaminan);
+    console.log("time  " + time);
+    console.log("fdate  " + fdate);
+    console.log("tdate  " + tdate);
+    console.log("days  " + days);
+    console.log("memberID  " + select2);
+    console.log("typeDiscount  " + typeDiscount); 
+    console.log("everyDiskon  " + everyDiskon); 
+    console.log("subtotal2  " + subtotal2); 
+    console.log("totalDiskon  " + totalDiskon); 
+    console.log("totalAll  " + totalAll); 
+    console.log("desc  " + desc); 
+    // try {
+    //   if(!productId){
+    //     req.flash("alertMessage", "Product Empty");
+    //     req.flash("alertStatus", "danger");
+    //     res.redirect(`/admin/dashboard`);
+    //   } else {
+    //     //This big shit
+    //     const product = await tbProduct.find({ _id : productId});
+    //     for (var i = 0; i < product.length; i++){
+    //     product[i].status = "NOT AVALAIBLE";
+    //     await product[i].save();
+    //     }
+    //     await tbTrans.create({productId ,select2, time, fdate, tdate, days ,typeDiscount , everyDiskon , jaminan ,subtotal2 ,totalDiskon, totalAll ,desc});
+    //     req.flash("alertMessage", "Succes Add Transaction");
+    //     req.flash("alertStatus", "success");
+    //     res.redirect(`/admin/dashboard`);
+    //     // await tbBooking.deleteMany();
+    //   }
+    // } catch (error) {
+    //   req.flash("alertMessage", `${error.message}`);
+    //   req.flash("alertStatus", 'danger');
+    //   res.redirect(`/admin/dashboard`);
+    // }
   },
 
 }

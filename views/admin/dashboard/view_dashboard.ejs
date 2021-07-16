@@ -70,14 +70,9 @@
                 <div class="col-lg-6">
                   <div>
                   <!-- form add trans dimasukin ke sini : no 1 -->
-                  <form action="/admin/dashboard/addTrans" method="POST" >
+                  <form action="/admin/transaction/addTrans" method="POST" >
                     <div class="container">
                       <div class="row">
-                        <!-- <div class="col-0">
-                          <button class="btn btn-primary" type="submit"">
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div> -->
                   
                         <div class="col">
                           <div class="form-group">
@@ -107,9 +102,8 @@
                           <input class="form-control " type="text"  placeholder="<%= moment().format('DD-MMM-YY') %>" id="tdate" name="tdate" required >
                         </div>
                   
-                        <!-- <div style="width: 6rem;" > -->
                           <input class="form-control"  name="time" value="<%= moment().format('LT') %>" type="hidden"  />
-                        <!-- </div> -->
+                    
                       </div>
                     </div>
                     <% var subtotal = 0;  %>
@@ -125,7 +119,7 @@
                               <h6 class="m-0 font-weight-bold text-primary"> <%= list[i].product_name %> </h6>
                             </div>
                             <div class="col-4">
-                              <input class="form-control" type="number" id="price" name="price" value="<%= list[i].price %>" >
+                              <input class="form-control" type="number" id="price" name="price" value="<%= list[i].price %>" readonly="true" >
                               </div>
                           </div> 
                         </div>
@@ -143,7 +137,7 @@
                               </div>
                             </div>
                             <div class="col">
-                              <input type="number" class="form-control" name="diskon<%= generateID + i  %>" value="" id= "diskon<%= generateID + i  %>" >
+                              <input type="number" class="form-control" name="diskon<%= generateID + i  %>" value="" id= "diskon<%= generateID + i  %>" readonly="true" >
                               <!-- ini buat dapetin value jumlah array nya -->
                               <input type="hidden" class="form-control" id="arrayidDiskon" value=<%=  list.length  %> >
                             </div>
@@ -165,20 +159,7 @@
                     </div>
                     <div style="margin-bottom: 1rem;" class="card-body">
                       <button type="submit" class="btn btn-primary">Submit</button>
-                      <!-- <a type="submit" class="btn btn-primary btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-save"></i>
-                        </span>
-                        <span class="text">Submit</span>
-                      </a> -->
-
-
-                      <a href="#" class="btn btn-danger btn-icon-split">
-                        <span class="icon text-white-50">
-                          <i class="fas fa-trash"></i>
-                        </span>
-                        <span class="text">Cancel</span>
-                      </a>
+                      <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 
                   

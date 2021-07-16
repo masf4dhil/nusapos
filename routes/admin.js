@@ -16,10 +16,11 @@ router.get("/logout", adminController.actionLogout);
 // ketika login succes akan mengarahkan ke screen view dashboard
 router.get("/dashboard", adminController.viewDashboard);
 router.post("/dashboard/addBook", adminController.addBook);
-router.post("/dashboard/addTrans", adminController.addTrans);
+
 
 
 router.get("/transaction", transactionController.viewTransaction);
+router.post("/transaction/addTrans", transactionController.addTrans);
 router.get("/transaction/:id", transactionController.showDetailTransaction);
 router.get("/transaction/print/:id", transactionController.showPrintTransaction);
 

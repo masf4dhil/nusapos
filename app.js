@@ -16,7 +16,7 @@ const deployDB = 'mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nus
 
 //import mongoose
 const mongoose = require("mongoose");
-mongoose.connect(deployDB, {
+mongoose.connect(localDB, {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -26,7 +26,6 @@ mongoose.connect(deployDB, {
 .catch((err) => console.log("NOT CONNECT " ,err));
 
 // ini route ke index.ejs (login)
-var indexRouter = require("./routes/index");
 
 var app = express();
 

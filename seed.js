@@ -3,8 +3,7 @@ var mongoose = require('mongoose');
 
 const localDB = 'mongodb://localhost:27017/nusa';
 const deployDB = 'mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nusa?retryWrites=true&w=majority';
-// mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/db_staycation?retryWrites=true&w=majority
-seeder.connect(deployDB, {
+seeder.connect(localDB, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: true,
