@@ -1,11 +1,14 @@
 var seeder = require('mongoose-seed');
 var mongoose = require('mongoose');
 
-seeder.connect('mongodb://localhost:27017/nusa', {
+const localDB = 'mongodb://localhost:27017/nusa';
+const deployDB = 'mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nusa?retryWrites=true&w=majority';
+// mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/db_staycation?retryWrites=true&w=majority
+seeder.connect(deployDB, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: false,
 }, function () {
 
   // Load Mongoose models

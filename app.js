@@ -16,14 +16,14 @@ const deployDB = 'mongodb+srv://alfatayah:satelit@cluster0.ahqs8.mongodb.net/nus
 
 //import mongoose
 const mongoose = require("mongoose");
-mongoose.connect(localDB, {
+mongoose.connect(deployDB, {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,
 })
 .then(() => console.log("DB NUSA is connected"))
-.catch((err) => console.log(err));
+.catch((err) => console.log("NOT CONNECT " ,err));
 
 // ini route ke index.ejs (login)
 var indexRouter = require("./routes/index");
