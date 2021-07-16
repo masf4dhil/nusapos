@@ -45,21 +45,6 @@
   }
 
 
-//   addNumbers = function(el){
-//   var subtotal = parseInt(document.getElementById("subtotal2").value);
-//   var idDiskon = parseInt(document.getElementById("arrayidDiskon").value);
-//     var total = 0;
-//     for( var i = 1; i <= idDiskon; i++ ) {
-//         var val = parseInt(document.getElementById("diskon" + i).value);
-//         if(val>0){
-//             total += val;
-//         }      
-//     }
-//    var diskon = document.getElementById('totalDiskon').value = total;
-//    var finalTotal = subtotal - diskon;
-
-//    document.getElementById('totalAll').value = finalTotal;
-// }
 
   function displayValue(data) {
     var id = "diskon" + data;
@@ -77,10 +62,13 @@
           total += val;
         }
       }
-      var diskon = document.getElementById('totalDiskon').value = total;
       var days = parseInt(document.getElementById("days").value);
-      var finalTotal = subtotal * days - diskon 
-      document.getElementById('totalAll').value = finalTotal;
+      var diskon = document.getElementById('totalDiskon').value = total;
+      if(days){
+        var finalTotal = subtotal * days - diskon 
+        document.getElementById('totalAll').value = finalTotal;
+      }
+
     }
   }
  
@@ -116,24 +104,21 @@
       minDate: '0',
       maxDate: '+1Y+6M'
     }).on('changeDate', function (ev) {
+      $('#tdate').datepicker('setStartDate', $("#fdate").val());
       var start = $("#fdate").val();
       var startD = new Date(start);
       var end = $("#tdate").val();
       var endD = new Date(end);
       var diff = parseInt((endD.getTime() - startD.getTime()) / (24 * 3600 * 1000));
       $("#days").val(diff);
-      // var add = parseInt(document.getElementById("subtotal1").value);
-      // var days = parseInt(document.getElementById("days").value);
-      // var subtotal = add * days;
-      // if(subtotal > 0){
-        // document.getElementById('subtotal2').value = subtotal;
-        
-      // }
 
-      var diskon = document.getElementById('totalDiskon').value = total;
+      var subtotal = parseInt(document.getElementById("subtotal2").value);
+      var diskon = document.getElementById('totalDiskon').value
       var days = parseInt(document.getElementById("days").value);
-      var finalTotal = subtotal * days - diskon 
-      document.getElementById('totalAll').value = finalTotal;
+      if (diskon) {
+        var finalTotal = subtotal * days - diskon
+        document.getElementById('totalAll').value = finalTotal;
+      }
    
     });
 
