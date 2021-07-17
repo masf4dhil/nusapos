@@ -82,7 +82,7 @@ module.exports = {
     const id = uuidv4();
     const _id = id.slice(0, 8)
 
-    const { productId, fdate, tdate, jaminan ,time , days , select2,subtotal2, typeDiscount, everyDiskon, totalDiskon, totalAll,  desc}  = req.body;
+    const { productId, fdate, tdate, jaminan ,time , days , select2,subtotal2,diskonID, typeDiskon,discountValue, totalDiskon, totalAll,  desc}  = req.body;
   
     console.log("_id  " + _id);
     console.log("productId  " + productId);
@@ -92,8 +92,9 @@ module.exports = {
     console.log("tdate  " + tdate);
     console.log("days  " + days);
     console.log("memberID  " + select2);
-    console.log("typeDiscount  " + typeDiscount); 
-    console.log("everyDiskon  " + everyDiskon); 
+    console.log("diskonID  " + diskonID);
+    console.log("typeDiskon  " + typeDiskon); 
+    console.log("discountValue  " + discountValue); 
     console.log("subtotal2  " + subtotal2); 
     console.log("totalDiskon  " + totalDiskon); 
     console.log("totalAll  " + totalAll); 
