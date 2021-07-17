@@ -131,15 +131,16 @@
                                 <select class="form-control"  id="discountValue<%= generateID + i  %>" name="discountValue" onchange="displayValue('<%= JSON.stringify(generateID + i) %>')" >
                                   <option selected disabled value="">Type Diskon</option>
                                   <% for(var x = 0; x < list[i].discount_id.length; x++){ %>
-                                    <option value=<%= list[i].discount_id[x].amount %> > <%= list[i].discount_id[x].typeDiscount %></option>
+                                    <option value=<%= list[i].discount_id[x].amount + '^' +  list[i].discount_id[x].id  %> > <%= list[i].discount_id[x].typeDiscount %></option>
                                     <% } %>
                                   </select>
                               </div>
                             </div>
                             <div class="col">
-                              <input type="number" class="form-control" name="diskon<%= generateID + i  %>" value="" id= "diskon<%= generateID + i  %>" readonly="true" >
+                              <input type="number" class="form-control" name="diskonDataValue" value="" id= "diskon<%= generateID + i  %>" readonly="true" >
                               <!-- ini buat dapetin value jumlah array nya -->
                               <input type="hidden" class="form-control" id="arrayidDiskon" name="arrayidDiskon" value=<%=  list.length  %> >
+                              <input type="hidden" class="form-control" id= "diskonID<%= generateID + i  %>" name="diskonID"  >
                             </div>
                             <div class="col">
                             </div>
