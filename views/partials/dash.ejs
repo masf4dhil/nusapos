@@ -50,24 +50,23 @@
 
     var id = "diskon" + data;
     let idValue = "discountValue" + data;
-    let diskonID = "diskonID" + data
-    let concat = document.getElementById(idValue).value
+    let diskonID = "diskonID" + data;
+    let type_id = "typeDiskon" + data;
+    let concat = document.getElementById(idValue).value;
     var output = concat.split('^');
 
+    var exType = output[2];
+    document.getElementById(type_id).value = exType;
 
     var ex = parseInt(output[0]);
-    document.getElementById(id).value = ex
-    console.log("ex " , ex);
+    document.getElementById(id).value = ex;
 
     var dataidDiskon = output[1]
-    document.getElementById(diskonID).value = dataidDiskon
-    console.log("ex " , ex);
+    document.getElementById(diskonID).value = dataidDiskon;
 
     if (ex) {
       var subtotal = parseInt(document.getElementById("subtotal2").value);
-      console.log("subtotal " , subtotal);
       var idDiskon = parseInt(document.getElementById("arrayidDiskon").value);
-      console.log("idDiskon " , idDiskon );
       var total = 0;
       for (var i = 1; i <= idDiskon; i++) {
         var val = parseInt(document.getElementById("diskon" + i).value);

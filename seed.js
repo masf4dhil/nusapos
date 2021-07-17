@@ -137,7 +137,7 @@ var data = [
     'documents': [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc91144d'),
-        typeDiscount:"Discount Rebate",
+        typeDiscount:"Discount_Rebate",
         amount: 1000,
         description:"diskon hit ramadhan",
         status: "Active",
@@ -148,7 +148,7 @@ var data = [
       },
       {
         _id: mongoose.Types.ObjectId('1e96cbe292b97300fc321242'),
-        typeDiscount:"Discount Percent",
+        typeDiscount:"Discount_Percent",
         amount: 2000,
         description:"diskon hit puasa lah",
         status: "Active",
